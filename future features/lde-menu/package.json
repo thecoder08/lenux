@@ -1,0 +1,11 @@
+{
+  "name": "lde-menu",
+  "version": "1.0.1",
+  "description": "The menu component of the Lenux desktop environment.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "thecoder08",
+  "license": "MIT"
+}

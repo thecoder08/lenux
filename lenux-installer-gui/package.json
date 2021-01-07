@@ -1,0 +1,12 @@
+{
+  "name": "lenux-installer",
+  "version": "1.0.1",
+  "main": "index.html",
+  "window": {
+    "height": 500,
+    "width": 500
+  },
+  "dependencies": {
+    "@thecoder08/docuget": "^1.0.3"
+  }
+}

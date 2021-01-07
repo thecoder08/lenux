@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>lde-logout</title>
+  </head>
+  <body>
+    <button onclick="logout();">Log Out</button>
+    <script>
+      function logout() {
+        require('fs').openSync('.lde-logout');
+      }
+    </script>
+  </body>
+</html>

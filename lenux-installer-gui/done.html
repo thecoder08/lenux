@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="main.css">
+    <meta charset="utf-8">
+    <title>Lenux Installer - Done</title>
+  </head>
+  <body>
+    <h1>All Done!</h1>
+    <p>Lenux has been installed! Go back and redo a section, or click the button below to reboot. Make sure you remove the installation media, otherwise you'll boot back into this installer!</p>
+    <p><button onclick="require('child_process').spawn('/sbin/reboot')">Reboot</button></p>
+    <p>Errors, questions, or comments? They can be reported at https://github.com/thecoder08/lenux/issues.</p>
+    <p><a href="grub.html">Go Back</a></p>
+  </body>
+</html>

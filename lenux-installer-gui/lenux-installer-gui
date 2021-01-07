@@ -1,0 +1,5 @@
+#!/bin/sh
+X :0 &
+sleep 5
+DISPLAY=:0 twm &
+DISPLAY=:0 /home/lennonmclean/nwjs-sdk/nw

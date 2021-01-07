@@ -1,0 +1,17 @@
+{
+  "name": "ldm",
+  "version": "1.0.1",
+  "description": "The display manager for the Lenux operating system.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "window": {
+    "position": "center"
+  },
+  "author": "thecoder08",
+  "license": "MIT",
+  "dependencies": {
+    "@thecoder08/docuget": "^1.0.3"
+  }
+}

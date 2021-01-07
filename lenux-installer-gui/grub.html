@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="main.css">
+    <meta charset="utf-8">
+    <title>Lenux Installer - Install Grub</title>
+  </head>
+  <body>
+    <h1>Install Grub</h1>
+    <p>Almost done! To make the operating system bootable, We need to install a bootloader. It's job is to load the kernel, and pass control to it. Lenux (and many other kinds of Linux), use GRUB as their bootloader. Click the button below to install GRUB.</p>
+    <p>Enter the disk to install grub on: <input placeholder="/dev/sda" id="disk"></p>
+    <p><button onclick="installgrub();">Install GRUB</button></p>
+    <p>Info:</p>
+    <textarea id="info" readonly rows="8" cols="80"></textarea>
+    <p><a href="done.html">Next</a> <a href="install.html">Go Back</a></p>
+    <script src="node_modules/@thecoder08/docuget/main.js"></script>
+    <script>
+      var cp = require('child_process');
+      function print(text) {
+        $('#info').value += text;
+      }
+      function clear() {
+        $('#info').value = '';
+      }
+      function installgrub() {
+        clear();
+        var grubinstall = cp.spawn('/sbin/grub-install', ['--boot-directory=/mnt/lenux/boot', '--target=i386-pc', $('#disk').value]);
+        grubinstall.stdout.on('data', function(data) {
+          print(data);
+        });
+        grubinstall.stderr.on('data', function(data) {
+          print(data);
+        });
+        grubinstall.on('exit', function(code, signal) {
+          if (code === 0) {
+            print('Success! Click Next.\n');
+          }
+          else {
+            print('Error installing GRUB!\n');
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
