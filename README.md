@@ -3,7 +3,7 @@ Lenux is a linux distribution dedicated to simplicity. Contrary to probably ever
 ## Download
 As of now, there is no download. Eventually however, you will be able to go to the releases page and download the img file available. From that, you can create a bootable USB stick using [BalenaEtcher](https://balena.io/etcher) or `dd`. Insert this into the computer on which you wish to install Lenux. Boot from the USB, choose the installation method (CLI or GUI), and follow along with the instructions it gives you.
 ## Documentation
-Documentation for each package can be accessed with
+Documentation for each package can be accessed using the Lenux documentation system with
 ```
 doc [package]
 ```
