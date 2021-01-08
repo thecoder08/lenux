@@ -1,0 +1,24 @@
+                          doc
+--------------------------------------------------------
+doc is the documentation program for Lenux. It shows the
+documentation for the package that you give it.
+--------------------------------------------------------
+                    The doc command
+--------------------------------------------------------
+You can access the documentation for a specified package
+with the following syntax:
+
+doc [package]
+
+This will print out the documentation for the package
+that was specified (if it is available).
+--------------------------------------------------------
+                    How it works
+To create documentation, add a plain text file to
+/usr/share/doc. Name the file whatever you want. doc
+will read whatever file in /usr/share/doc that is
+specified. For example
+
+doc helloworld
+
+reads the file /usr/share/doc/helloworld.

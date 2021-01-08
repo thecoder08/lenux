@@ -64,8 +64,8 @@ the system upon installation.
 --------------------------------------------------------
                     Final notes
 --------------------------------------------------------
-In the future, a dynamic linker may be provied. Until
+In the future, a dynamic linker may be provided. Until
 that time comes, all packages written in a compiled
 language must be compiled COMPLETELY STATICALLY. Also
 note that all of a package's dependencies must be
-shipped with the package.
+shipped with that package.

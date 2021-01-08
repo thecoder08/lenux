@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+var fs = require('fs');
+var args = process.argv;
+if (args.length < 3) {
+  console.log('Invalid Syntax!\n');
+  console.log('Correct Syntax:');
+  console.log('doc [package]');
+}
+else {
+  fs.readFile('/usr/share/doc/' + args[2], function(err, data) {
+    if (err) {
+      console.log('Package not found or package does not have documentation!');
+    }
+    else {
+      process.stdout.write(data);
+    }
+  });
+}
