@@ -1,0 +1,71 @@
+                         LPM
+--------------------------------------------------------
+LPM is the package manager for Lenux. It is very simple.
+There's no repositories or downloading. LPM's job is to
+take a package file that you provide it, extract it, and
+install it to the system by merging it with the root.
+--------------------------------------------------------
+                  Installing Packages
+--------------------------------------------------------
+Packages are installed using the "install" command:
+
+install [packagefile]
+
+Packages use the .lpf extension, but when you install
+them, don't add the .lpf to the specified package file.
+--------------------------------------------------------
+                     How it works
+--------------------------------------------------------
+Packages are in the .tar.gz format. All files in the
+package should be in a folder that MUST have same name
+as the .lpf file. To make a package, imagine this folder
+as your root. take this example:
+
+package-v1.0.1-amd64.lpf
+package-v1.0.1-amd64
+  PKGNAME     - this file is where you put the name of
+the package. in this senario, "package".
+  usr
+    bin
+      hello
+    doc
+      package
+
+This package has a name of "package", a binary called
+"hello", and you access its documentation with
+
+doc package
+
+After installing this package, the system caches all
+files this package added in the JSON format in
+/etc/lpmcache.
+--------------------------------------------------------
+                  Building packages
+--------------------------------------------------------
+After creating your package in the format specified in
+"How it works", you can turn it into a package with the
+command:
+
+build [packagedir]
+
+This will create a .lpf file in the same directory as
+the folder, which you ship to your users. Ensure that
+you DO NOT change the name of that .lpf file!
+--------------------------------------------------------
+                   Removing packages
+--------------------------------------------------------
+To remove an already installed package from your system,
+use:
+
+remove [package]
+
+This will remove all files that this package added to
+the system upon installation.
+--------------------------------------------------------
+                    Final notes
+--------------------------------------------------------
+In the future, a dynamic linker may be provied. Until
+that time comes, all packages written in a compiled
+language must be compiled COMPLETELY STATICALLY. Also
+note that all of a package's dependencies must be
+shipped with the package.
