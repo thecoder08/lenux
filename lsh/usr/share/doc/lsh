@@ -1,0 +1,20 @@
+                         lsh
+--------------------------------------------------------
+lsh is the Lenux shell. Type commands that corraspond to
+the syntax given in the documentation for that command.
+--------------------------------------------------------
+                    Built-in commands
+--------------------------------------------------------
+The following commands do not have external
+documentation and are part of the lsh program. There is
+cd, which changes the working directory that child
+programs will be run in, and exit/logout, which quits
+the process.
+
+cd [directory]
+
+and
+
+exit
+
+are the syntaxes.

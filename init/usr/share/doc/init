@@ -1,0 +1,34 @@
+                       init
+--------------------------------------------------------
+init is the startup system for lenux. It reads the
+daemons to start up from /etc/init/<daemon-name>, and
+reads the process to run in the foreground from
+/etc/init/fgproc (collectively called initfiles).
+--------------------------------------------------------
+                Syntax of initfiles
+--------------------------------------------------------
+initfiles launch programs without any arguments. You can
+specify the absolute path to the program, or the name of
+the program and init will search the $PATH for it. The
+default fgproc contains the following:
+
+sh
+
+This launches the default shell. This way, you can run
+commands whenever.
+--------------------------------------------------------
+                       initctl
+--------------------------------------------------------
+initctl is the command that controls init. You use it to
+start and stop initfiles. The syntax is as follows:
+
+initctl [start/stop] [daemon-name]
+
+to start or stop a specific daemon.
+--------------------------------------------------------
+                       Notes
+--------------------------------------------------------
+The fgproc ideally shouldn't exit, if it does, it is
+restarted.
+If init encounters an unrecoverable error, it enters an
+infinite loop.

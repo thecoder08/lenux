@@ -1,0 +1,20 @@
+#!/usr/bin/node
+var args = process.argv;
+var net = require('net');
+if (args[2] == 'start') {
+  console.log('Starting daemon ' + args[3] + '...');
+  var sock = net.connect('/etc/init.sock');
+  sock.write(JSON.stringify({op: 'start', daemon: args[3]}));
+  sock.end();
+}
+else if (args[2] == 'stop') {
+  console.log('Stopping daemon ' + args[3] + '...');
+  sock.write(JSON.stringify({op: 'stop', daemon: args[3]}));
+  sock.end();
+}
+else {
+  console.log('Invalid Syntax!\n');
+  console.log('Correct Syntax:');
+  console.log('initctl start [daemon-name]');
+  console.log('initctl stop [daemon-name]');
+}

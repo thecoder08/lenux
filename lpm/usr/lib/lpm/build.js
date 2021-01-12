@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/node
 var tar = require('tar');
 var args = process.argv;
 if (args.length < 3) {

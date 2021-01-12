@@ -1,0 +1,42 @@
+#!/usr/bin/node
+var cp = require('child_process');
+var control = 'shell';
+var cwd = process.env.PWD
+function listener(data) {
+  if (control == 'shell') {
+    var command = data.toString().split('\n')[0].split(' ');
+    var prog = command[0];
+    command.shift();
+    if (prog == 'cd') {
+      cwd = command[0];
+      process.stdout.write('$ ');
+    }
+    else if ((prog == 'exit') || (prog == 'logout')) {
+      process.exit();
+    }
+    else {
+    program = cp.spawn(prog, command, {env: process.env, cwd: cwd});
+    control = 'child';
+    program.on('error', function(err) {
+      console.log(err.toString());
+      process.stdout.write('$ ');
+      control = 'shell';
+    });
+    program.on('exit', function() {
+      process.stdout.write('$ ');
+      control = 'shell';
+    });
+    program.stdout.on('data', function(data) {
+      process.stdout.write(data);
+    });
+    program.stderr.on('data', function(data) {
+      process.stderr.write(data);
+    });
+    }
+  }
+  else {
+    program.stdin.write(data);
+  }
+}
+process.stdout.write('$ ');
+process.stdin.on('data', listener);

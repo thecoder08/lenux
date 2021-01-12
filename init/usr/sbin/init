@@ -1,0 +1,84 @@
+#!/usr/bin/node
+var cp = require('child_process');
+var fs = require('fs');
+var net = require('net');
+var daemons = [];
+function foreground() {
+  fs.readFile('/etc/init/fgproc', function(err, data) {
+    if (err) {
+      console.log('ERROR: COULD NOT READ FOREGROUND PROCESS');
+      console.log('UNRECOVERABLE: ENTERING INFINITE LOOP');
+      while(true);
+    }
+    else {
+      var fgproc = cp.spawn(data.toString().split('\n')[0]);
+      fgproc.on('exit', function() {
+        console.log('WARNING: foreground process exited, this ideally shouldn\'t happen, restarting foreground process...');
+        foreground();
+      });
+      fgproc.stdout.pipe(process.stdout);
+      fgproc.stderr.pipe(process.stderr);
+      process.stdin.pipe(fgproc.stdin);
+    }
+  });
+}
+if (process.pid == 1) {
+console.log('Welcome to Lenux v1.0.1!');
+console.log('Initializing daemons...');
+fs.readdir('/etc/init', function(err, data) {
+  if (err) {
+    console.log('ERROR: MISSING INIT DIRECTORY OR NOT READABLE');
+    console.log('UNRECOVERABLE: ENTERING INFINITE LOOP');
+    while(true);
+  }
+  else {
+    for (var i = 0; i < data.length; i++) {
+    var files = data;
+    if (files[i] !== 'fgproc') {
+      console.log('Starting ' + files[i] + '...');
+      fs.readFile('/etc/init/' + files[i], function(err, data) {
+        if (err) {
+          console.log('WARNING: Could not read initfile ' + files[i] + ', skipping');
+        }
+        else {
+          var process = cp.spawn(data.toString().split('\n')[0]);
+          process.on('error', function(err) {
+            console.log('WARNING: Error executing daemon ' + files[i] + ', skipping');
+          });
+          daemons[files[i]] = process;
+        }
+      });
+    }
+    }
+    console.log('Daemons initialized, starting foreground process...');
+    foreground();
+  }
+});
+fs.unlink('/etc/init.sock', function(err) {
+  net.createServer(function(socket) {
+    socket.on('data', function(data) {
+      var command = JSON.parse(data);
+      if (command.op == 'start') {
+        fs.readFile(command.daemon, function(err, data) {
+          if (err) {
+            console.log('WARNING: Could not read initfile ' + files[i] + ', skipping');
+          }
+          else {
+            var process = cp.spawn(data.toString().split('\n')[0]);
+            daemons[command.daemon] = process;
+            process.on('error', function(err) {
+              console.log('WARNING: could not execute daemon, skipping');
+            });
+          }
+        });
+      }
+      if (command.op == 'stop') {
+        daemons[command.daemon].kill('SIGINT');
+      }
+    });
+  }).listen('/etc/init.sock');
+});
+}
+else {
+  console.log('PID is not 1, init must be started by kernel on boot.');
+}
