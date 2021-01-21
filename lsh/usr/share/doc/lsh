@@ -15,6 +15,6 @@ cd [directory]
 
 and
 
-exit
+exit/logout [exitcode]
 
 are the syntaxes.

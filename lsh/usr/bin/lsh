@@ -12,7 +12,12 @@ function listener(data) {
       process.stdout.write('$ ');
     }
     else if ((prog == 'exit') || (prog == 'logout')) {
-      process.exit();
+      if (command[0] !== undefined) {
+        process.exit(command[0]);
+      }
+      else {
+        process.exit();
+      }
     }
     else {
     program = cp.spawn(prog, command, {env: process.env, cwd: cwd});

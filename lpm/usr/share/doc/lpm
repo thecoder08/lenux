@@ -1,7 +1,7 @@
                          LPM
 --------------------------------------------------------
 LPM is the package manager for Lenux. It is very simple.
-There's no repositories or downloading. LPM's job is to
+There are no repositories or downloading. LPM's job is to
 take a package file that you provide it, extract it, and
 install it to the system by merging it with the root.
 --------------------------------------------------------
@@ -28,8 +28,9 @@ the package. in this senario, "package".
   usr
     bin
       hello
-    doc
-      package
+    share
+      doc
+        package
 
 This package has a name of "package", a binary called
 "hello", and you access its documentation with

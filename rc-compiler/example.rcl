@@ -1,0 +1,15 @@
+NEW MAN text_memory 26
+NEW MAN video_mode 27
+NEW MAN keyboard 68
+NEW DYN a
+NEW DYN b
+NEW DYN c
+# set video mode
+video_mode = 1
+# take values from keyboard and store them in memory
+a = keyboard
+b = keyboard
+# add them together and store it in memory
+c = a + b
+# show result on screen
+text_memory = c
