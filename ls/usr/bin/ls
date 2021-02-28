@@ -12,6 +12,6 @@ fs.readdir(path, function(err, data) {
     console.log('Error reading directory!');
   }
   else {
-    console.log(data.join(' '));
+    console.log(data.join('\n'));
   }
 });
