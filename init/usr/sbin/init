@@ -41,8 +41,10 @@ fs.readdir('/etc/init', function(err, data) {
           console.log('WARNING: Could not read initfile ' + files[i] + ', skipping');
         }
         else {
+          console.log(files);
           var process = cp.spawn(data.toString().split('\n')[0]);
           process.on('error', function(err) {
+            console.log(files);
             console.log('WARNING: Error executing daemon ' + files[i] + ', skipping');
           });
           daemons[files[i]] = process;
@@ -59,9 +61,9 @@ fs.unlink('/etc/init.sock', function(err) {
     socket.on('data', function(data) {
       var command = JSON.parse(data);
       if (command.op == 'start') {
-        fs.readFile(command.daemon, function(err, data) {
+        fs.readFile('/etc/init/' + command.daemon, function(err, data) {
           if (err) {
-            console.log('WARNING: Could not read initfile ' + files[i] + ', skipping');
+            console.log('WARNING: Could not read initfile ' + command.daemon + ', skipping');
           }
           else {
             var process = cp.spawn(data.toString().split('\n')[0]);
