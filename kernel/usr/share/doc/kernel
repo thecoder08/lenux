@@ -1,0 +1,10 @@
+                        kernel
+--------------------------------------------------------
+kernel is the package that contains the linux kernel and
+initial ramdisk. they are located in the boot directory,
+under the names vmlinuz-<version> and
+initrd.img-<version>. They are loaded by GRUB on boot,
+and after the kernel does some initialization, it
+launches the first userland process (pid=1), /sbin/init.
+The kernel provides services to the userland programs,
+that can be accessed with interrupt 80h.

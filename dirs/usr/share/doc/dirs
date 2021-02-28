@@ -1,0 +1,15 @@
+               Standard directories
+--------------------------------------------------------
+The standard directories are the empty root directories
+that the kernel populates on boot. They are also
+symlinked root directories. They include:
+
+bin - symlink
+dev - directory
+lib - symlink
+mnt - directory
+proc - directory
+sbin - symlink
+tmp - directory
+run - directory
+sys - directory

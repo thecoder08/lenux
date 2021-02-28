@@ -1,0 +1,5 @@
+                         ld
+--------------------------------------------------------
+ld is the dynamic linker for Lenux. It is found at
+/usr/lib/ld-2.28.so. It automatically links shared
+libraries with a program, when said program starts up.

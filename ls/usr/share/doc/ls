@@ -1,0 +1,9 @@
+                          ls
+--------------------------------------------------------
+ls is a command that allows you to list the files in a
+directory. It has the following syntax:
+
+ls [path]
+
+If no path is specified, it lists the files in the
+current working direcory.

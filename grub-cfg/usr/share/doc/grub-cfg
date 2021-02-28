@@ -1,0 +1,6 @@
+                      grub-cfg
+--------------------------------------------------------
+grub-cfg contains the GNU GRUB bootloader configuration
+file. It is found at /boot/grub/grub.cfg. It tells GRUB
+where to find the kernel and initial ramdisk, and the
+kernel command line to start the system with.
