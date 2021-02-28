@@ -1,0 +1,17 @@
+#!/usr/bin/node
+var fs = require('fs');
+var args = process.argv;
+if (args.length < 3) {
+  path = '.';
+}
+else {
+  path = args[2];
+}
+fs.readdir(path, function(err, data) {
+  if (err) {
+    console.log('Error reading directory!');
+  }
+  else {
+    console.log(data.join(' '));
+  }
+});
