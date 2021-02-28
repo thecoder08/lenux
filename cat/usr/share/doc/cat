@@ -1,0 +1,12 @@
+                         cat
+--------------------------------------------------------
+The cat command reads the contents of a file that you
+specify.
+--------------------------------------------------------
+                        Syntax
+--------------------------------------------------------
+The cat command uses the following syntax:
+
+cat [file]
+
+to read the contents of file [file].
