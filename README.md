@@ -15,4 +15,4 @@ cd lenux
 ./build.sh
 ```
 The build script requires the commands `sudo`, `dd`, `losetup`, `fdisk`, `mkfs.ext4`, `mkdir`, `mount`, `rsync`, `grub-install`, `umount`, and `rmdir`.
-The installer will prompt you for your password. You must give it. It will also open up an fdisk shell for the disk image. Give it an msdos partition table (this should happen automatically), and at least one partition. It will be automatically formatted it the next step.
+The installer may prompt you for your password. You must give it. It will also open up an fdisk shell for the disk image. Give it an msdos partition table (this should happen automatically), and at least one partition. It will be automatically formatted it the next step.

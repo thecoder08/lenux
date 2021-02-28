@@ -2,7 +2,7 @@
 set -e
 echo "Welcome to the Lenux 1.0.1 installer script!"
 echo "Setting up..."
-dd if=/dev/zero of=lenux.img bs=512 count=
+dd if=/dev/zero of=lenux.img bs=512 count=4194304
 sudo losetup -P loop8 lenux.img
 sudo fdisk /dev/loop8
 sudo mkfs.ext4 /dev/loop8p1
