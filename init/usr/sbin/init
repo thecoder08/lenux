@@ -26,7 +26,7 @@ function foreground() {
       process.stdin.on('data', function(data) {
         process.stdout.write(data);
         if (data.toString() == '\n') {
-          fgproc.stdin.write(buffer);
+          fgproc.stdin.write(buffer + '\n');
           buffer = '';
         }
         else {
