@@ -6,7 +6,7 @@ if (args.length < 3) {
   console.log('cat [file]: Display the contents of file [file]')
 }
 else {
-  fs.readFile(path, function(err, data) {
+  fs.readFile(args[2], function(err, data) {
     if (err) {
       console.log('Error reading file!');
     }
