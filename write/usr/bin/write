@@ -1,0 +1,21 @@
+#!/usr/bin/node
+var fs = require('fs');
+var args = process.argv;
+if (args.length < 3) {
+  console.log('Usage:');
+  console.log('write [file]: write data from standard input to a file until recieved "EOF"');
+}
+else {
+  process.stdin.on('data', function(data) {
+    if (data == 'EOF\n') {
+      process.exit();
+    }
+    else {
+      fs.appendFile(args[2], data, function(err) {
+        if (err) {
+          console.log('Error writing to file!');
+        }
+      });
+    }
+  });
+}

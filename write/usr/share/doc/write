@@ -1,0 +1,9 @@
+                         write
+--------------------------------------------------------
+write is a command for writing data to files. the syntax
+is below. Use
+
+write [file]
+
+to write data from standard input to a file until "EOF"
+is typed, denoting the end of the file.
