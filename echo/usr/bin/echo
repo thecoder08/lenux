@@ -1,0 +1,9 @@
+#!/usr/bin/node
+var args = process.argv;
+if (args.length < 3) {
+  console.log('Usage:');
+  console.log('echo [string]: print the string [string] to the console.');
+}
+else {
+  console.log(args[2]);
+}

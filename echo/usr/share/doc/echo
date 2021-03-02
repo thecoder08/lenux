@@ -1,0 +1,8 @@
+                        echo
+--------------------------------------------------------
+echo is the command that prints a string to standard
+output. it's syntax is
+
+echo [string]
+
+to print [string] to the console.
