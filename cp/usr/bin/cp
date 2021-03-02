@@ -1,0 +1,19 @@
+#!/usr/bin/node
+if (args.length < 4) {
+  console.log('Usage:');
+  console.log('cp [source] [dest]: copy file [source] to file [dest].');
+}
+else {
+  fs.readFile(args[2], function(err, data) {
+    if (err) {
+      console.log('Error reading source file!');
+    }
+    else {
+      fs.writeFile(args[3], data, function(err) {
+        if (err) {
+          console.log('Error writing destination file!');
+        }
+      });
+    }
+  });
+}
