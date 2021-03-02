@@ -24,6 +24,8 @@ sudo rsync -a cat/ /mnt/lenux
 sudo rsync -a bash/ /mnt/lenux
 sudo rsync -a echo/ /mnt/lenux
 sudo rsync -a write/ /mnt/lenux
+sudo rsync -a cp/ /mnt/lenux
+sudo rsync -a rm/ /mnt/lenux
 echo "Installing GRUB..."
 sudo grub-install --target=i386-pc --boot-directory=/mnt/lenux/boot /dev/loop8
 echo "Finishing up..."

@@ -1,0 +1,14 @@
+#!/usr/bin/node
+var args = process.argv;
+var fs = require('fs');
+if (args.length < 3) {
+  console.log('Usage:');
+  console.log('rm [file]: delete file [file]');
+}
+else {
+  fs.unlink(args[2], function(err) {
+    if (err) {
+      console.log('Error removing file!');
+    }
+  });
+}

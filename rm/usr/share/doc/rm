@@ -1,0 +1,8 @@
+                         rm
+--------------------------------------------------------
+Use the rm command to delete a file, using the following
+syntax:
+
+rm [file]
+
+to delete a file under the name [file]
