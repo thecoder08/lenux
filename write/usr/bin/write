@@ -14,6 +14,7 @@ else {
       fs.appendFile(args[2], data, function(err) {
         if (err) {
           console.log('Error writing to file!');
+          process.exit();
         }
       });
     }
