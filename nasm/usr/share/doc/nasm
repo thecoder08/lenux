@@ -1,0 +1,5 @@
+                       nasm
+--------------------------------------------------------
+nasm is the netwide assembler. It assembles assembly
+language code into machine code. Documentation is at
+https://nasm.us. It is needed by coyote.
