@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/node
 var fs = require('fs');
 var args = process.argv;
 if (args.length < 3) {
@@ -11,6 +11,11 @@ else {
     console.log('Error reading file!');
   });
   rs.on('data', function(data) {
-    process.stdout.write(data);
+    if (data == 'EOF\n') {
+      process.exit();
+    }
+    else {
+      process.stdout.write(data);
+    }
   });
 }

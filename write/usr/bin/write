@@ -3,7 +3,7 @@ var fs = require('fs');
 var args = process.argv;
 if (args.length < 3) {
   console.log('Usage:');
-  console.log('write [file]: write data from standard input to a file');
+  console.log('write [file]: write data from standard input to a file until recieved "EOF"');
 }
 else {
   var ws = fs.createWriteStream(args[2]);
@@ -12,6 +12,11 @@ else {
     process.exit();
   });
   process.stdin.on('data', function(data) {
-    ws.write(data);
+    if (data == 'EOF\n') {
+      process.exit();
+    }
+    else {
+      ws.write(data);
+    }
   });
 }
