@@ -1,0 +1,13 @@
+{
+  "name": "@thecoder08/grady-game",
+  "version": "1.0.2",
+  "description": "A text-based adventure game made as a gift for my brother for his birthday.",
+  "dependencies": {
+    "@thecoder08/prompt": "^1.0.2"
+  },
+  "bin": {
+    "gradygame": "main.js"
+  },
+  "author": "thecoder08",
+  "license": "MIT"
+}
