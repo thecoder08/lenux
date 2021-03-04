@@ -1,7 +1,7 @@
 # Lenux
 Lenux is a linux distribution for x86 computers dedicated to simplicity. Contrary to probably every linux distribution in exsistence, it is NOT bundled with GNU or UNIX software (except for GNU GRUB, the bootloader, GNU ld, the dynamic linker, and GNU libc, the standard C library. You can also optionally use GNU bash). The software is all created by me, [thecoder08](https://github.com/thecoder08). All of the software, except for linux itself, is written in node.js.
 ## Download
-To download, go to the releases page and download the img file available. From that, you can create a bootable USB stick using [BalenaEtcher](https://balena.io/etcher) or `dd`. Insert this into the computer on which you wish to run Lenux. Simply boot from the USB, and you have a working Lenux system! You can also run Lenux in a virtual machine like QEMU.
+To download, go to the releases page and download the .img.gz file available. Extract it with `gunzip` or other utility. From the .img file that remains, you can create a bootable USB stick using [BalenaEtcher](https://balena.io/etcher) or `dd`. Insert this into the computer on which you wish to run Lenux. Simply boot from the USB, and you have a working Lenux system! You can also run Lenux in a virtual machine like QEMU.
 ## Documentation
 Documentation for each package can be accessed using the Lenux documentation system with the command
 ```
