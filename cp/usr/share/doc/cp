@@ -1,2 +1,8 @@
                          cp
 --------------------------------------------------------
+cp is the command to copy a source file to a
+destination file. The syntax is below.
+
+cp [source] [dest]
+
+to copy file [source] to file [dest].
