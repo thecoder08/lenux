@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 var fs = require('fs');
 var args = process.argv;
 if (args.length < 3) {
@@ -6,12 +6,11 @@ if (args.length < 3) {
   console.log('cat [file]: Display the contents of file [file]')
 }
 else {
-  fs.readFile(args[2], function(err, data) {
-    if (err) {
-      console.log('Error reading file!');
-    }
-    else {
-      process.stdout.write(data);
-    }
+  var rs = fs.createReadStream(args[2]);
+  rs.on('error', function(err) {
+    console.log('Error reading file!');
+  });
+  rs.on('data', function(data) {
+    process.stdout.write(data);
   });
 }
