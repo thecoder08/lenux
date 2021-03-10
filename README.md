@@ -14,7 +14,7 @@ git clone https://github.com/thecoder08/lenux.git
 cd lenux
 ./build.sh
 ```
-The build script requires the commands `sudo`, `dd`, `losetup`, `fdisk`, `mkfs.ext4`, `mkdir`, `mount`, `rsync`, `grub-install`, `umount`, and `rmdir`.
+The build script requires the commands `sudo`, `dd`, `losetup`, `fdisk`, `mkfs.ext4`, `mkdir`, `mount`, `rsync`, `grub-install`, `umount`, and `rmdir`. Loop device 8 must also be free.
 The installer may prompt you for your password. You must give it. It will also open up an fdisk shell for the disk image. Give it an msdos partition table (this should happen automatically), and at least one partition. It will be automatically formatted it the next step.
 
 You should then be able to run `lenux.img` in QEMU using the command
@@ -26,3 +26,8 @@ for i386 systems, or
 qemu-system-x86_64 -hda lenux.img -m 2048
 ```
 for x86_64 systems. (The same disk image is used for both) again, it is still possible to run Lenux in a real computer.
+## Known Issues
+* Pressing a key multiple times before it registers.
+* Grub may specify the wrong hard drive when runnnig on a real machine.
+* Shell crashes if the line is empty
+* If the foreground process (usually the shell) exits, init does not disconnect stdin/stdout, resulting in a kernel panic if you try to type something.
