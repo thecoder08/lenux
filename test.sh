@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-echo "Welcome to the Lenux 1.0.2 build script!"
+echo "Welcome to the Lenux 1.0.2 test script!"
 echo "Setting up..."
 dd if=/dev/zero of=test.img bs=512 count=4194304
 /sbin/mkfs.ext4 test.img
