@@ -1,0 +1,6 @@
+label: dos
+label-id: 0xe4ff35f5
+device: /dev/loop8
+unit: sectors
+
+/dev/loop8p1 : start=        2048, size=     4192256, type=83

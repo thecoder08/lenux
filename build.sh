@@ -4,7 +4,7 @@ echo "Welcome to the Lenux 1.0.2 build script!"
 echo "Setting up..."
 dd if=/dev/zero of=lenux.img bs=512 count=4194304
 sudo losetup -P loop8 lenux.img
-sudo fdisk /dev/loop8
+cat lenux.sfdisk | sudo sfdisk /dev/loop8
 sudo mkfs.ext4 /dev/loop8p1
 sudo mkdir /mnt/lenux
 sudo mount /dev/loop8p1 /mnt/lenux
