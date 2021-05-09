@@ -32,5 +32,6 @@ sudo umount /mnt/lenux
 sudo rmdir /mnt/lenux
 echo "Running test image..."
 qemu-system-i386 -m 2048 -hda test.img -kernel kernel/boot/vmlinuz-4.19.0-11-686-pae -initrd kernel/boot/initrd.img-4.19.0-11-686-pae -append "root=/dev/sda rw"
+echo "Removing test image..."
 rm test.img
 echo "Done!"
