@@ -28,7 +28,7 @@ You can easily test the live code in QEMU by cloning the repository and running
 ```
 ./test.sh
 ```
-in the repository directory. This requires the commands `rsync` and `qemu-system-i386`.
+in the repository directory. This requires the commands `rsync` and `qemu-system-x86_64`.
 ## Known Issues
 * Grub may specify the wrong hard drive when runnnig on a real machine.
 * Shell crashes if the line is empty.

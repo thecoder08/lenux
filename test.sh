@@ -17,7 +17,6 @@ sudo rsync -a ls/ /mnt/lenux
 sudo rsync -a lsh/ /mnt/lenux
 sudo rsync -a node/ /mnt/lenux
 sudo rsync -a cat/ /mnt/lenux
-sudo rsync -a bash/ /mnt/lenux
 sudo rsync -a echo/ /mnt/lenux
 sudo rsync -a write/ /mnt/lenux
 sudo rsync -a cp/ /mnt/lenux
