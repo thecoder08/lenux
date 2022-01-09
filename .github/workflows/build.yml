@@ -11,6 +11,8 @@ jobs:
       - name: Get repository code
         uses: actions/checkout@v2
 
+      - name: Install build dependencies
+        run: sudo apt install libssl-dev libelf-dev -y
       - name: Build Linux kernel
         run: ./buildlinux.sh
 
