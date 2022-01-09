@@ -17,6 +17,7 @@ sudo rsync -a ls/ /mnt/lenux
 sudo rsync -a lsh/ /mnt/lenux
 sudo rsync -a node/ /mnt/lenux
 sudo rsync -a cat/ /mnt/lenux
+sudo rsync -a clear/ /mnt/lenux
 sudo rsync -a echo/ /mnt/lenux
 sudo rsync -a write/ /mnt/lenux
 sudo rsync -a cp/ /mnt/lenux
@@ -29,7 +30,7 @@ echo "Finishing up..."
 sudo umount /mnt/lenux
 sudo rmdir /mnt/lenux
 echo "Running test image..."
-qemu-system-x86_64 -m 2048 -hda test.img -kernel kernel/boot/linux -append "root=/dev/sda rw init=/bin/lsh quiet" -nographic
+qemu-system-x86_64 -m 2048 -hda test.img -kernel kernel/boot/linux -append "root=/dev/sda rw init=/bin/lsh quiet console=ttyS0" -nographic
 echo "Removing test image..."
 rm test.img
 echo "Done!"

@@ -31,7 +31,6 @@ You can easily test the live code in QEMU by cloning the repository and running
 ```
 in the repository directory. The test script requires the commands `rsync` and `qemu-system-x86_64`.
 ## Known Issues
-* Grub may specify the wrong hard drive when runnnig on a real machine.
-* Shell crashes if the line is empty.
+* Grub may specify the wrong hard drive when running on a real machine.
 
 *With some exceptions. see `doc gnu` for details.

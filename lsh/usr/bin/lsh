@@ -1,14 +1,38 @@
 #!/usr/bin/node
 var cp = require('child_process');
+var fs = require('fs');
+var path = require('path');
 var control = 'shell';
-var cwd = process.env.PWD
+var cwd = process.cwd();
 function listener(data) {
   if (control == 'shell') {
     var command = data.toString().split('\n')[0].split(' ');
     var prog = command[0];
     command.shift();
     if (prog == 'cd') {
-      cwd = command[0];
+      var pathToCheck = '';
+      if (command[0].charAt(0) == '/') {
+        pathToCheck = path.resolve(command[0]);
+      }
+      else {
+        pathToCheck = path.resolve(path.join(cwd, command[0]));
+      }
+      fs.stat(pathToCheck, function(err, stats) {
+        if (err) {
+          console.log('No such file or directory!');
+        }
+        else {
+          if (stats.isDirectory()) {
+            cwd = pathToCheck;
+          }
+          else {
+            console.log('Not a directory!');
+          }
+        }
+        process.stdout.write('$ ');
+      });
+    }
+    else if (prog == '') {
       process.stdout.write('$ ');
     }
     else if ((prog == 'exit') || (prog == 'logout')) {
@@ -20,27 +44,18 @@ function listener(data) {
       }
     }
     else {
-    program = cp.spawn(prog, command, {env: process.env, cwd: cwd});
-    control = 'child';
-    program.on('error', function(err) {
-      console.log(err.toString());
-      process.stdout.write('$ ');
-      control = 'shell';
-    });
-    program.on('exit', function() {
-      process.stdout.write('$ ');
-      control = 'shell';
-    });
-    program.stdout.on('data', function(data) {
-      process.stdout.write(data);
-    });
-    program.stderr.on('data', function(data) {
-      process.stderr.write(data);
-    });
+      var program = cp.spawn(prog, command, {env: process.env, cwd: cwd, stdio: 'inherit'});
+      control = 'child';
+      program.on('error', function(err) {
+        process.stderr.write(err + '\n');
+        process.stdout.write('$ ');
+        control = 'shell';
+       });
+      program.on('exit', function(code) {
+        process.stdout.write('$ ');
+        control = 'shell';
+      });
     }
-  }
-  else {
-    program.stdin.write(data);
   }
 }
 process.stdout.write('$ ');
