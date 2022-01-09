@@ -1,7 +1,0 @@
-                         libs
---------------------------------------------------------
-libs is the package that contains some shared libraries,
-that may be required by node.js and other programs.
-Among them is the GNU C library and runtime, that
-provides useful functions to programs written in the C
-programming language, among others.

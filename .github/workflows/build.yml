@@ -1,0 +1,27 @@
+name: Build Lenux
+
+on:
+  [push, workflow_dispatch]
+
+jobs:
+  buildnw:
+    name: Build image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v2
+
+      - name: Build Linux kernel
+        run: ./buildkernel.sh
+
+      - name: Build Lenux image
+        run: ./build.sh
+
+      - name: Compress Lenux image
+        run: gzip lenux.img > lenux.img.gz
+
+      - name: Upload compressed image
+        uses: actions/upload-artifact@v2
+        with:
+          name: lenux.img.gz
+          path: lenux.img.gz

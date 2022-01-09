@@ -1,0 +1,10 @@
+           gnu          
+--------------------------
+the gnu package contains
+software from the gnu
+project that is nessesary
+for node.js to run on
+Linux. For example, the
+gnu C library, libgcc,
+the gnu dynamic linker,
+and other libraries.

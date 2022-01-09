@@ -1,0 +1,2 @@
+#!/usr/bin/node
+process.stdout.write('\033[2J\033[H');

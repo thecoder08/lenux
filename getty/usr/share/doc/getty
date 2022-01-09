@@ -1,0 +1,8 @@
+                getty
+---------------------------------------
+Getty is the program responsible for
+allowing the user to access the system
+via a given terminal. It binds a
+program's stardard input, output, and
+error to a terminal, allowing the user
+to interact with the program.

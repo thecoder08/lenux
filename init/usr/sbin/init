@@ -3,40 +3,7 @@ var cp = require('child_process');
 var fs = require('fs');
 var net = require('net');
 var daemons = [];
-function foreground() {
-  var buffer = '';
-  fs.readFile('/etc/init/fgproc', function(err, data) {
-    if (err) {
-      console.log('ERROR: COULD NOT READ FOREGROUND PROCESS');
-      console.log('UNRECOVERABLE: ENTERING INFINITE LOOP');
-      while(true);
-    }
-    else {
-      var fgproc = cp.spawn(data.toString().split('\n')[0]);
-      fgproc.on('exit', function() {
-        console.log('WARNING: foreground process exited, this ideally shouldn\'t happen, restarting foreground process...');
-        foreground();
-      });
-      fgproc.stdout.on('data', function(data) {
-        process.stdout.write(data);
-      });
-      fgproc.stderr.on('data', function(data) {
-        process.stderr.write(data);
-      });
-      process.stdin.on('data', function(data) {
-        process.stdout.write(data);
-        if (data.toString() == '\n') {
-          fgproc.stdin.write(buffer + '\n');
-          buffer = '';
-        }
-        else {
-          buffer += data.toString();
-        }
-      });
-    }
-  });
-}
-if (process.pid == 1) {
+//if (process.pid == 1) {
 console.log('Welcome to Lenux v1.0.2!');
 console.log('Initializing daemons...');
 fs.readdir('/etc/init', function(err, data) {
@@ -47,27 +14,27 @@ fs.readdir('/etc/init', function(err, data) {
   }
   else {
     for (var i = 0; i < data.length; i++) {
-    var files = data;
-    if (files[i] !== 'fgproc') {
+      var files = data;
       console.log('Starting ' + files[i] + '...');
       fs.readFile('/etc/init/' + files[i], function(err, data) {
         if (err) {
           console.log('WARNING: Could not read initfile ' + files[i] + ', skipping');
         }
         else {
-          console.log(files);
-          var process = cp.spawn(data.toString().split('\n')[0]);
-          process.on('error', function(err) {
-            console.log(files);
+          var progargs = data.toString().split('\n')[0].split(' ');
+          var progname = progargs.shift();
+          var program = cp.spawn(progname, progargs);
+          program.on('error', function(err) {
             console.log('WARNING: Error executing daemon ' + files[i] + ', skipping');
           });
-          daemons[files[i]] = process;
+          program.on('close', function() {
+            program = cp.spawn(progname, progargs);
+          });
+          daemons[files[i]] = program;
         }
       });
     }
-    }
-    console.log('Daemons initialized, starting foreground process...');
-    foreground();
+    console.log('Daemons initialized, Use serial terminal to interact with system.');
   }
 });
 fs.unlink('/etc/init.sock', function(err) {
@@ -80,9 +47,9 @@ fs.unlink('/etc/init.sock', function(err) {
             console.log('WARNING: Could not read initfile ' + command.daemon + ', skipping');
           }
           else {
-            var process = cp.spawn(data.toString().split('\n')[0]);
-            daemons[command.daemon] = process;
-            process.on('error', function(err) {
+            var program = cp.spawn(data.toString().split('\n')[0]);
+            daemons[command.daemon] = program;
+            program.on('error', function(err) {
               console.log('WARNING: could not execute daemon, skipping');
             });
           }
@@ -94,7 +61,7 @@ fs.unlink('/etc/init.sock', function(err) {
     });
   }).listen('/etc/init.sock');
 });
-}
-else {
-  console.log('PID is not 1, init must be started by kernel on boot.');
-}
+//}
+//else {
+//  console.log('PID is not 1, init must be started by kernel on boot.');
+//}

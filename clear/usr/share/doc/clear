@@ -1,0 +1,17 @@
+               clear
+------------------------------------
+Running the clear command allows
+you to clear the terminal (physical
+or virtual) and return the cursor
+home (the top-left of the screen).
+It does this by sending the
+appropriate ANSI escape codes to the
+terminal. Please note that your
+must support this feature in order
+for it to function. A traditional
+teletype that uses paper obviously
+cannot erase characters. It is
+possible, however, to "clear" the
+screen by printing many line feeds
+to the terminal to move all text
+off the screen.
