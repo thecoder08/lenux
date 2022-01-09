@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Linux kernel
-        run: ./buildkernel.sh
+        run: ./buildlinux.sh
 
       - name: Build Lenux image
         run: ./build.sh
