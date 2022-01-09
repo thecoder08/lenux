@@ -26,9 +26,10 @@ Again, it is still possible to run Lenux on a real computer.
 ## Testing
 You can easily test the live code in QEMU by cloning the repository and running
 ```
+./buildlinux.sh
 ./test.sh
 ```
-in the repository directory. This requires the commands `rsync` and `qemu-system-x86_64`.
+in the repository directory. The test script requires the commands `rsync` and `qemu-system-x86_64`.
 ## Known Issues
 * Grub may specify the wrong hard drive when runnnig on a real machine.
 * Shell crashes if the line is empty.
