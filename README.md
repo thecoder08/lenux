@@ -12,9 +12,10 @@ You can build your own Lenux system with your own tweaks using the build script 
 ```shell
 git clone https://github.com/thecoder08/lenux.git
 cd lenux
+./buildlinux.sh
 ./build.sh
 ```
-The build script requires the commands `sudo`, `dd`, `losetup`, `sfdisk`, `mkfs.ext4`, `mkdir`, `mount`, `rsync`, `grub-install`, `umount`, and `rmdir`. Loop device 8 must also be free.
+The buildlinux script requires the kernel dependencies, such as `libelf-dev`, `libssl-dev`, `bison`, and `flex`. The build script requires the commands `sfdisk`, `rsync`, and `grub-install`.
 The installer may prompt you for your password. You must give it.
 
 You should then be able to run `lenux.img` in QEMU using the command
@@ -27,8 +28,9 @@ You can easily test the live code in QEMU by cloning the repository and running
 ```
 ./test.sh
 ```
-in the repository directory. This requires the same commands as the build script, minus `losetup`, `sfdisk`, and `grub-install`, and plus `qemu-system-i386`.
+in the repository directory. This requires the commands `rsync` and `qemu-system-i386`.
 ## Known Issues
 * Grub may specify the wrong hard drive when runnnig on a real machine.
 * Shell crashes if the line is empty.
-* If the foreground process (usually the shell) exits, init does not disconnect stdin/stdout, resulting in a kernel panic if you try to type something.
+
+*With some exceptions. see `doc gnu` for details.
