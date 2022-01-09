@@ -20,7 +20,7 @@ jobs:
         run: ./build.sh
 
       - name: Compress Lenux image
-        run: gzip lenux.img > lenux.img.gz
+        run: gzip lenux.img
 
       - name: Upload compressed image
         uses: actions/upload-artifact@v2
