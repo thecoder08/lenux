@@ -2,7 +2,7 @@
 set -e
 echo "Welcome to the Lenux 1.0.2 test script!"
 echo "Setting up..."
-dd if=/dev/zero of=test.img bs=1024 count=1048576
+dd if=/dev/zero of=test.img bs=1024 count=500000
 /sbin/mkfs.ext4 test.img
 chmod o+w test.img
 sudo mkdir /mnt/lenux
@@ -30,7 +30,7 @@ echo "Finishing up..."
 sudo umount /mnt/lenux
 sudo rmdir /mnt/lenux
 echo "Running test image..."
-qemu-system-x86_64 -m 2048 -hda test.img -kernel kernel/boot/linux -append "root=/dev/sda rw init=/bin/lsh quiet console=ttyS0" -nographic
+qemu-system-x86_64 -m 2048 -hda test.img -kernel kernel/boot/linux -append "root=/dev/sda rw quiet"
 echo "Removing test image..."
 rm test.img
 echo "Done!"

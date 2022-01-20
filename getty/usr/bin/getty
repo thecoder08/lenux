@@ -1,1 +1,7 @@
-../lib/getty/getty.js
+#!/usr/bin/node
+var fs = require('fs');
+var cp = require('child_process');
+var ttyFd = fs.openSync(process.argv[2], 'r+');
+var writeStream = fs.createWriteStream(null, {fd: ttyFd});
+var readStream = fs.createReadStream(null, {fd: ttyFd});
+cp.spawn(process.argv[3], [], { stdio: [writeStream, readStream, writeStream] });
