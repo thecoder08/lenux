@@ -1,1 +1,1 @@
-getty /dev/ttyS0 /bin/lsh
+getty /dev/ttyS0 /bin/sh
