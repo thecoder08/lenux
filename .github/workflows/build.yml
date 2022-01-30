@@ -4,7 +4,7 @@ on:
   [push, workflow_dispatch]
 
 jobs:
-  buildnw:
+  build:
     name: Build image
     runs-on: ubuntu-latest
     steps:
