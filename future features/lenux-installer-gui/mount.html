@@ -23,7 +23,7 @@
       function clear() {
         $('#info').value = '';
       }
-      function mountSolo() {
+      function mount() {
         clear();
         print('Mounting Lenux Filesystem...');
         var mountlenux = cp.spawn('/bin/mount', [$('#partition').value, '/mnt/lenux']);

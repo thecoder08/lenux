@@ -7,6 +7,6 @@
     "width": 500
   },
   "dependencies": {
-    "@thecoder08/docuget": "^1.0.3"
+    "@thecoder08/docuget": "thecoder08/docuget"
   }
 }
