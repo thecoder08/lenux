@@ -2,6 +2,5 @@ label: dos
 label-id: 0xce453fc8
 device: /dev/loop8
 unit: sectors
-sector-size: 512
 
 /dev/loop8p1 : start=        2048, size=      997952, type=83
