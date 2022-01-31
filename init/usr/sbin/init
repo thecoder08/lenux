@@ -26,9 +26,8 @@ fs.readdir('/etc/init', function(err, data) {
           var progname = progargs.shift();
           function startProgram(daemon) {
             var program = cp.spawn(progname, progargs);
-            program.on('error', function(err) {
-              console.log('WARNING: Error executing daemon ' + daemon + ', skipping');
-            });
+            program.stdout.pipe(process.stdout);
+            program.stderr.pipe(process.stderr);
             program.on('close', function() {
               console.log('Restarting ' + daemon + '...');
               startProgram(daemon);
