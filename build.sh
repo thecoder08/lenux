@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-echo "Welcome to the Lenux 1.0.2 build script!"
+echo "Welcome to the Lenux 1.0.3 build script!"
 echo "Setting up..."
 dd if=/dev/zero of=lenux.img bs=1024 count=500000
 sudo losetup -P loop8 lenux.img
