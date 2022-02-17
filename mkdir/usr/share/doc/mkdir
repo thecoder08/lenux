@@ -1,0 +1,6 @@
+              mkdir
+----------------------------------
+Create a new directory.
+Usage:
+
+mkdir [dirname]

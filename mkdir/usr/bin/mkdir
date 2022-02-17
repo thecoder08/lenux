@@ -1,0 +1,13 @@
+#!/usr/bin/node
+if (process.argv.length < 3) {
+  console.log('Usage:');
+  console.log('mkdir [dirname]');
+}
+else {
+  var fs = require('fs');
+  fs.mkdir(process.argv[2], function(err) {
+    if (err) {
+      console.log('Error making directory!');
+    }
+  });
+}

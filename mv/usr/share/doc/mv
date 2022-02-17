@@ -1,0 +1,8 @@
+           mv
+--------------------------
+Move and rename files.
+
+Move/rename <original> to
+<renamed> with:
+
+mv <original> <renamed>
