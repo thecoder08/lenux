@@ -26,6 +26,8 @@ sudo rsync -a nasm/ /mnt/lenux
 sudo rsync -a coyote/ /mnt/lenux
 sudo rsync -a grady-game/ /mnt/lenux
 sudo rsync -a getty/ /mnt/lenux
+sudo rsync -a mv/ /mnt/lenux
+sudo rsync -a mkdir/ /mnt/lenux
 echo "Finishing up..."
 sudo umount /mnt/lenux
 sudo rmdir /mnt/lenux
