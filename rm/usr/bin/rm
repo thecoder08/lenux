@@ -6,7 +6,7 @@ if (args.length < 3) {
   console.log('rm [file]: delete file [file]');
 }
 else {
-  fs.unlink(args[2], function(err) {
+  fs.rm(args[2], { recursive: true }, function(err) {
     if (err) {
       console.log('Error removing file!');
     }
