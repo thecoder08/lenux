@@ -1,4 +1,5 @@
 #!/usr/bin/node
+var args = process.argv;
 if (args.length < 4) {
   console.log('Usage:');
   console.log('cp [source] [dest]: copy file [source] to file [dest].');

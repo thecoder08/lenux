@@ -1,0 +1,8 @@
+                 grep
+--------------------------------------
+Grep searches a given file or
+directory (listing of the directory)
+for a specified term. It is used as
+follows:
+
+grep [file/dir] [term]

@@ -1,0 +1,32 @@
+#!/usr/bin/node
+var args = process.argv;
+if (args.length < 4) {
+  console.log('Usage:');
+  console.log('grep [file/dir] [term]: Scan [file] or listing of directory [dir] for [term].');
+}
+else {
+  var fs = require('fs');
+  fs.lstat(args[2], function(err, stat) {
+    if (err) {
+      console.log('Error reading file or directory!');
+    }
+    else {
+      if (stat.isFile()) {
+          var file = fs.readFileSync(args[2]).toString().split('\n');
+          for (var i = 0; i < file.length; i++) {
+              if (file[i].includes(args[3])) {
+                  console.log(file[i]);
+              }
+          }
+      }
+      else {
+        var file = fs.readdirSync(args[2]);
+        for (var i = 0; i < file.length; i++) {
+          if (file[i].includes(args[3])) {
+            console.log(file[i]);
+          }
+        }
+      }
+    }
+  });
+}
