@@ -28,11 +28,12 @@ sudo rsync -a grady-game/ /mnt/lenux
 sudo rsync -a getty/ /mnt/lenux
 sudo rsync -a mv/ /mnt/lenux
 sudo rsync -a mkdir/ /mnt/lenux
+sudo rsync -a grep/ /mnt/lenux
 echo "Finishing up..."
 sudo umount /mnt/lenux
 sudo rmdir /mnt/lenux
 echo "Running test image..."
-qemu-system-x86_64 -m 2048 -hda test.img -kernel kernel/boot/linux -append "root=/dev/sda rw quiet"
+qemu-system-x86_64 -m 2048 -hda test.img -kernel kernel/boot/linux -append "root=/dev/sda vga=ask rw quiet"
 echo "Removing test image..."
 rm test.img
 echo "Done!"

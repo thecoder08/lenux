@@ -31,6 +31,7 @@ sudo rsync -a grady-game/ /mnt/lenux
 sudo rsync -a getty/ /mnt/lenux
 sudo rsync -a mv/ /mnt/lenux
 sudo rsync -a mkdir/ /mnt/lenux
+sudo rsync -a grep/ /mnt/lenux
 echo "Installing GRUB..."
 sudo grub-install --target=i386-pc --boot-directory=/mnt/lenux/boot /dev/loop8
 echo "Finishing up..."
