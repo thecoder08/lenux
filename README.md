@@ -15,7 +15,7 @@ cd lenux
 ./buildlinux.sh
 ./build.sh
 ```
-The buildlinux script requires the kernel dependencies, such as `libelf-dev`, `libssl-dev`, `bison`, and `flex`. The build script requires the commands `sfdisk`, `rsync`, and `grub-install`.
+The buildlinux script requires the kernel dependencies, such as `libelf-dev`, `libssl-dev`, `bison`, and `flex`. You can run `./buildlinux.sh config` to configure Linux before building it. If you choose not to configure it, the buildlinux script will use the config file that comes with the repository. The build script requires the commands `sfdisk`, `rsync`, and `grub-install`.
 The installer may prompt you for your password. You must give it.
 
 You should then be able to run `lenux.img` in QEMU using the command
