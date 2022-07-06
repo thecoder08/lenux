@@ -5,16 +5,6 @@ if (args.length < 4) {
   console.log('cp [source] [dest]: copy file [source] to file [dest].');
 }
 else {
-  fs.readFile(args[2], function(err, data) {
-    if (err) {
-      console.log('Error reading source file!');
-    }
-    else {
-      fs.writeFile(args[3], data, function(err) {
-        if (err) {
-          console.log('Error writing destination file!');
-        }
-      });
-    }
-  });
+  var fs = require('fs');
+  fs.createReadStream(args[2]).pipe(fs.createWriteStream(args[3]));
 }
