@@ -1,5 +1,5 @@
 # Lenux
-Lenux is a linux distribution for 64-bit x86 computers dedicated to simplicity. Contrary to probably every linux distribution in exsistence (apart maybe Alpine), it is NOT bundled with GNU or UNIX software*. The software is all created by me, [thecoder08](https://github.com/thecoder08). All of the software, except for linux itself, is written in node.js.
+Lenux is a linux distribution for 64-bit x86 computers dedicated to simplicity. Contrary to probably every linux distribution in exsistence (apart from maybe Alpine), it is NOT bundled with GNU or UNIX software*. The software is all created by me, [thecoder08](https://github.com/thecoder08). All of the programs, except for Linux, are written in node.js.
 ## Download
 To download, go to the releases page and download the .img.gz file available. Extract it with `gunzip` or other utility. From the .img file that remains, you can create a bootable USB stick using [BalenaEtcher](https://balena.io/etcher) or `dd`. Insert this into the computer on which you wish to run Lenux. Simply boot from the USB, and you have a working Lenux system! You can also run Lenux in a virtual machine like QEMU.
 ## Documentation
