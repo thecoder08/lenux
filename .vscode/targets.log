@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jul 30 10:52:57 2022
+# Make data base, printed on Sat Jul 30 12:15:38 2022
 
 # Variables
 
@@ -23,7 +21,7 @@ SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-94c7af03-1e6c-4d4e-891f-2c6f839f20f7.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-66e4c58b-e057-4d19-939e-15d5ed889a8e.sock
 # environment
 MANDATORY_PATH = /usr/share/gconf/pop.mandatory.path
 # environment
@@ -95,7 +93,7 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 83498
+VSCODE_PID = 176286
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -181,7 +179,7 @@ MAKE_VERSION := 4.3
 # environment
 MANAGERPID = 2884
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 83498
+GIO_LAUNCHED_DESKTOP_FILE_PID = 176286
 # environment
 PYTHONPATH = /usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10/site-packages:/usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10/site-packages:
 # environment
@@ -225,9 +223,9 @@ GDMSESSION = pop
 
 # Directories
 
-# . (device 66310, inode 4915630): 36 files, no impossibilities.
+# . (device 66310, inode 4915630): 39 files, no impossibilities.
 
-# 36 files, no impossibilities in 1 directories.
+# 39 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -277,13 +275,14 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 44 / storage = 322 B / avg = 7 B
-# current buf: size = 8162 B / used = 322 B / count = 44 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 47 / storage = 373 B / avg = 7 B
+# current buf: size = 8162 B / used = 373 B / count = 47 / avg = 7 B
 
-# strcache performance: lookups = 47 / hit rate = 6%
+# strcache performance: lookups = 50 / hit rate = 6%
 # hash-table stats:
-# Load=44/8192=1%, Rehash=0, Collisions=0/47=0%
- 
-# Finished Make data base on Sat Jul 30 10:52:57 2022
+# Load=47/8192=1%, Rehash=0, Collisions=0/50=0%
+# Finished Make data base on Sat Jul 30 12:15:38 2022
 
  
+make: *** No rule to make target 'all'.  Stop.
+
