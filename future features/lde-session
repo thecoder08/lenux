@@ -1,4 +1,0 @@
-#!/bin/sh
-xsetroot -solid black
-node /home/lennonmclean/github/lenux/AirWM/lib/airwm.js &
-/home/lennonmclean/github/lenux/lde-menu/nw
