@@ -20,10 +20,7 @@ The buildlinux script requires the kernel dependencies, such as `libelf-dev`, `l
 
 The installer may prompt you for your password. You must give it.
 
-You should then be able to run `lenux.img` in QEMU using the command
-```shell
-qemu-system-x86_64 -hda lenux.img -m 2048
-```
+You can then run Lenux on real hardware by using `dd` to flash the image to a USB drive.
 Again, it is still possible to run Lenux on a real computer.
 ## Testing
 You can easily test the live code in QEMU by cloning the repository and running
