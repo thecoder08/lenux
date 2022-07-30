@@ -13,9 +13,11 @@ You can build your own Lenux system with your own tweaks using the build script 
 git clone https://github.com/thecoder08/lenux.git
 cd lenux
 ./buildlinux.sh
-./build.sh
+./buildrootfs.sh
+./buildimg.sh
 ```
-The buildlinux script requires the kernel dependencies, such as `libelf-dev`, `libssl-dev`, `bison`, and `flex`. You can run `./buildlinux.sh config` to configure Linux before building it. If you choose not to configure it, the buildlinux script will use the config file that comes with the repository. The build script requires the commands `sfdisk`, `rsync`, and `grub-install`.
+The buildlinux script requires the kernel dependencies, such as `libelf-dev`, `libssl-dev`, `bison`, and `flex`. You can run `./buildlinux.sh config` to configure Linux before building it. If you choose not to configure it, the buildlinux script will use the config file that comes with the repository. The buildimg script requires the commands `sfdisk` and `grub-install`. The buildrootfs script requires the command `rsync`.
+
 The installer may prompt you for your password. You must give it.
 
 You should then be able to run `lenux.img` in QEMU using the command
@@ -27,9 +29,10 @@ Again, it is still possible to run Lenux on a real computer.
 You can easily test the live code in QEMU by cloning the repository and running
 ```
 ./buildlinux.sh
+./buildrootfs.sh
 ./test.sh
 ```
-in the repository directory. The test script requires the commands `rsync` and `qemu-system-x86_64`.
+in the repository directory. The test script requires the command `qemu-system-x86_64`.
 ## Known Issues
 * Grub may specify the wrong hard drive when running on a real machine.
 

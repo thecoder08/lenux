@@ -11,17 +11,27 @@ jobs:
       - name: Get repository code
         uses: actions/checkout@v2
 
-      - name: Install build dependencies
+      - name: Install kernel dependencies
         run: sudo apt install libssl-dev libelf-dev -y
+
       - name: Build Linux kernel
         run: ./buildlinux.sh
 
+      - name: Build Lenux rootfs
+        run: ./buildrootfs.sh
+
       - name: Build Lenux image
-        run: ./build.sh
+        run: ./buildimg.sh
 
       - name: Compress Lenux image
         run: gzip lenux.img
 
+      - name: Upload rootfs
+        uses: actions/upload-artifact@v2
+        with:
+          name: lenux.tar.gz
+          path: lenux.tar.gz
+        
       - name: Upload compressed image
         uses: actions/upload-artifact@v2
         with:

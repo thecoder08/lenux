@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jul  6 18:01:02 2022
+# Make data base, printed on Sat Jul 30 10:52:57 2022
 
 # Variables
 
@@ -23,7 +23,7 @@ SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-004ca872-7696-4d25-b488-a85469525f48.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-94c7af03-1e6c-4d4e-891f-2c6f839f20f7.sock
 # environment
 MANDATORY_PATH = /usr/share/gconf/pop.mandatory.path
 # environment
@@ -72,6 +72,8 @@ CURDIR := /home/lennonmclean/github/lenux
 VSCODE_PIPE_LOGGING = true
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -93,13 +95,13 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 405148
+VSCODE_PID = 83498
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/lennon:@/tmp/.ICE-unix/2702,unix/lennon:/tmp/.ICE-unix/2702
+SESSION_MANAGER = local/lennon:@/tmp/.ICE-unix/3885,unix/lennon:/tmp/.ICE-unix/3885
 # automatic
 *F = $(notdir $*)
 # environment
@@ -135,17 +137,21 @@ MAKEFILES :=
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = c4035d05770b43fe9a7092b6fa603aeb
+INVOCATION_ID = 195cd87e30164d3fb1c20c59f8bdd8d4
 # environment
 VSCODE_LOG_NATIVE = false
 # environment
 USERNAME = lennonmclean
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
 # automatic
 ?F = $(notdir $?)
 # environment
 GTK_IM_MODULE = ibus
 # environment
 XDG_CURRENT_DESKTOP = Unity
+# environment
+LS_COLORS = 
 # automatic
 +F = $(notdir $+)
 # environment
@@ -157,13 +163,11 @@ GNUMAKEFLAGS :=
 # environment
 LOGNAME = lennonmclean
 # environment
-LIBGL_ALWAYS_INDIRECT = 1
-# environment
 GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # makefile
 .DEFAULT_GOAL := 
 # environment
-SYSTEMD_EXEC_PID = 2727
+SYSTEMD_EXEC_PID = 3905
 # environment
 DISPLAY = :0
 # environment
@@ -175,9 +179,9 @@ DEFAULTS_PATH = /usr/share/gconf/pop.default.path
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 2497
+MANAGERPID = 2884
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 405148
+GIO_LAUNCHED_DESKTOP_FILE_PID = 83498
 # environment
 PYTHONPATH = /usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10/site-packages:/usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10/site-packages:
 # environment
@@ -187,7 +191,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-JOURNAL_STREAM = 8:48827
+JOURNAL_STREAM = 8:64683
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -213,7 +217,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 GDMSESSION = pop
 # variable set hash-table stats:
-# Load=100/1024=10%, Rehash=0, Collisions=4/127=3%
+# Load=102/1024=10%, Rehash=0, Collisions=4/129=3%
 
 # Pattern-specific Variable Values
 
@@ -273,12 +277,13 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 44 / storage = 319 B / avg = 7 B
-# current buf: size = 8162 B / used = 319 B / count = 44 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 44 / storage = 322 B / avg = 7 B
+# current buf: size = 8162 B / used = 322 B / count = 44 / avg = 7 B
 
 # strcache performance: lookups = 47 / hit rate = 6%
 # hash-table stats:
 # Load=44/8192=1%, Rehash=0, Collisions=0/47=0%
-# Finished Make data base on Wed Jul  6 18:01:02 2022
+ 
+# Finished Make data base on Sat Jul 30 10:52:57 2022
 
  
