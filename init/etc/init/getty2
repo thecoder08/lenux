@@ -1,0 +1,1 @@
+getty /dev/tty2 /bin/sh
