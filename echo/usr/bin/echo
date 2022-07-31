@@ -5,5 +5,7 @@ if (args.length < 3) {
   console.log('echo [string]: print the string [string] to the console.');
 }
 else {
-  console.log(args[2]);
+  args.shift();
+  args.shift();
+  console.log(args.join(' '));
 }
