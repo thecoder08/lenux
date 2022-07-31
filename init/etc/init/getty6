@@ -1,1 +1,3 @@
 getty /dev/tty6 /bin/sh
+
+Getty on tty6.

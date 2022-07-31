@@ -1,1 +1,3 @@
 getty /dev/tty4 /bin/sh
+
+Getty on tty4.
