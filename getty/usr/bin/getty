@@ -1,8 +1,6 @@
 #!/usr/bin/node
-var fs = require('fs');
-var cp = require('child_process');
-var ttyFd = fs.openSync(process.argv[2], 'r+');
-var writeStream = fs.createWriteStream(null, {fd: ttyFd});
-var readStream = fs.createReadStream(null, {fd: ttyFd});
-process.stdout.write('\033[2J\033[H');
-cp.spawn(process.argv[3], [], { stdio: [writeStream, readStream, writeStream] });
+process.argv.shift();
+process.argv.shift();
+var ttyFd = require('fs').openSync(process.argv.shift(), 'r+');
+ttyFd.write('\033[2J\033[H');
+require('child_process').spawn(process.argv.shift(), process.argv, { stdio: [ttyFd, ttyFd, ttyFd] });

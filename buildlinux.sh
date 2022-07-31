@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-KERNEL_VERSION=5.18.9
+KERNEL_VERSION=5.18.15
 CORES=$(nproc)
 wget https://cdn.kernel.org/pub/linux/kernel/v${KERNEL_VERSION:0:1}.x/linux-$KERNEL_VERSION.tar.xz
 tar -xvf linux-$KERNEL_VERSION.tar.xz

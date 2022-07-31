@@ -5,5 +5,5 @@ is below. Use
 
 write [file]
 
-to write data from standard input to a file until "EOF"
-is typed, denoting the end of the file.
+to write data from standard input to a file until ASCII
+EOF is recieved, denoting the end of the file.

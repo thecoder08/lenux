@@ -3,6 +3,7 @@ var cp = require('child_process');
 var fs = require('fs');
 var net = require('net');
 if (process.pid == 1) {
+process.stdout.write('\033[2J\033[H');
 console.log('Welcome to Lenux v1.0.3!');
 console.log('Initializing daemons...');
 fs.readdir('/etc/init', function(err, data) {
