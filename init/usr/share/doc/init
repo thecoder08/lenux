@@ -5,12 +5,10 @@ daemons to start up from /etc/init/<daemon-name>.
 --------------------------------------------------------
                 Syntax of initfiles
 --------------------------------------------------------
-initfiles specify a command to run. You can
-specify the absolute path to the program, or the name of
-the program and init will search the $PATH for it. The
-default initfile, console-getty, contains the following:
-
-getty /dev/console /bin/sh
-
-This launches the default shell on the system console.
-This way, you can run commands whenever.
+initfiles specify a command to run. You can specify the
+absolute path to the program, or the name of the program
+and init will search the $PATH for it. This can then be
+followed by a space, and then a space-separated list of
+arguments.
+init will only read the first line of the initfile, the
+rest are ignored.
