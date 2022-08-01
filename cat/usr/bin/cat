@@ -9,13 +9,10 @@ else {
   var rs = fs.createReadStream(args[2]);
   rs.on('error', function(err) {
     console.log('Error reading file!');
+    console.log(err);
+    process.exit();
   });
   rs.on('data', function(data) {
-    if (data == 'EOF\n') {
-      process.exit();
-    }
-    else {
-      process.stdout.write(data);
-    }
+    process.stdout.write(data);
   });
 }
