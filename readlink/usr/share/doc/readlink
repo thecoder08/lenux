@@ -1,0 +1,6 @@
+        readlink
+------------------------
+Get the linked file of a
+given symlink.
+
+readlink [symlink]

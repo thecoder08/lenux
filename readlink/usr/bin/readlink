@@ -1,0 +1,9 @@
+#!/usr/bin/node
+require('fs').readlink(process.argv[2], function(err, link) {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        console.log(link);
+    }
+});
