@@ -1,9 +1,7 @@
 #!/usr/bin/node
 var cp = require('child_process');
 var fs = require('fs');
-var net = require('net');
 if (process.pid == 1) {
-process.stdout.write('\033[2J\033[H');
 console.log('Welcome to Lenux v1.0.3!');
 console.log('Initializing daemons...');
 fs.readdir('/etc/init', function(err, data) {
@@ -14,6 +12,7 @@ fs.readdir('/etc/init', function(err, data) {
   }
   else {
     for (var i = 0; i < data.length; i++) {
+      (function() {
       var daemon = data[i];
       console.log('Starting ' + daemon + '...');
       fs.readFile('/etc/init/' + daemon, function(err, filedata) {
@@ -35,6 +34,7 @@ fs.readdir('/etc/init', function(err, data) {
           startProgram(daemon);
         }
       });
+    })();
     }
     console.log('System initialized!');
   }
