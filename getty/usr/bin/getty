@@ -2,5 +2,5 @@
 process.argv.shift();
 process.argv.shift();
 var ttyFd = require('fs').openSync(process.argv.shift(), 'r+');
-ttyFd.write('\033[2J\033[H');
+require('fs').writeSync(ttyFd, '\033[2J\033[H');
 require('child_process').spawn(process.argv.shift(), process.argv, { stdio: [ttyFd, ttyFd, ttyFd] });
