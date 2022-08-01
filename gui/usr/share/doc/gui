@@ -1,0 +1,13 @@
+          gui
+-----------------------
+GUI is a graphical user
+interface for Lenux. It
+is started on boot by
+init, but can be
+launched manually with
+the gui commmand.
+
+it depends on /dev/fb0
+for graphical output,
+and /dev/input/mice
+for mouse input.
