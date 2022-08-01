@@ -13,7 +13,7 @@ echo "Finishing up..."
 sudo umount /mnt/lenux
 sudo rmdir /mnt/lenux
 echo "Running test image..."
-qemu-system-x86_64 -m 2048 -vga std -hda test.img -kernel kernel/boot/linux -append "root=/dev/sda rw vga=0x312"
+kvm -m 2048 -vga std -hda test.img -kernel kernel/boot/linux -append "root=/dev/sda rw vga=0x312"
 echo "Removing test image..."
 rm test.img
 echo "Done!"
