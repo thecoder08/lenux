@@ -7,10 +7,10 @@ var x = 0;
 var y = 0;
 
 getMouse('/dev/input/mice', function(left, middle, right, rel_x, rel_y) {
-    if (((x + rel_x) >= 0) && ((x + rel_x) < 640)) {
+    if (((x + rel_x) >= 0) && ((x + rel_x) < 630)) {
         x += rel_x;
     }
-    if (((y - rel_y) >= 0) && ((y - rel_y) < 480)) {
+    if (((y - rel_y) >= 0) && ((y - rel_y) < 470)) {
         y -= rel_y;
     }
     fb.clear();
