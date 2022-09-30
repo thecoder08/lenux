@@ -2,15 +2,18 @@
 import { SerialPort } from 'serialport';
 if (process.stdin.isTTY) {
     var serial = await prompt('Enter modem serial port: ');
-    var baud = await prompt('Enter baud rate: ');
+    console.log(serial);
+    var baud = parseInt(await prompt('Enter baud rate: '));
+    console.log(baud);
     var action = await prompt('Would you like to answer or dial? (Type A or D): ');
+    console.log(action);
     if (action == 'D') {
         var number = await prompt('Enter phone number: ');
         var modem = new SerialPort({path: serial, baudRate: baud});
         modem.write('ATZ\r');
         modem.write('ATD' + number + '\r');
         console.log('Connecting...');
-        process.stdin.once('data', function(data) {
+        process.stdin.once('data', async function(data) {
             if (data.toString().includes('CONNECT ')) {
                 console.log('Connected.');
                 process.stdin.setRawMode(true);
@@ -29,7 +32,7 @@ if (process.stdin.isTTY) {
         await waitfor('RING\r\n');
         modem.write('ATA\r');
         console.log('Connecting...');
-        process.stdin.once('data', function(data) {
+        process.stdin.once('data', async function(data) {
             if (data.toString().includes('CONNECT ')) {
                 console.log('Connected.');
                 process.stdin.setRawMode(true);
@@ -51,6 +54,7 @@ if (process.stdin.isTTY) {
     }
     else {
         console.log('Enter A or D.');
+        process.exit();
     }
 }
 else {

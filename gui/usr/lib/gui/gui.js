@@ -15,15 +15,15 @@ getMouse('/dev/input/mice', function(left, middle, right, rel_x, rel_y) {
     }
     fb.clear();
     if (left) {
-        fb.drawRectangle(x, y, 10, 10, colors.red);
+        fb.rectangle(x, y, 10, 10, colors.red);
     }
     else if (middle) {
-        fb.drawRectangle(x, y, 10, 10, colors.yellow);
+        fb.rectangle(x, y, 10, 10, colors.yellow);
     }
     else if (right) {
-        fb.drawRectangle(x, y, 10, 10, colors.green);
+        fb.rectangle(x, y, 10, 10, colors.green);
     }
     else {
-        fb.drawRectangle(x, y, 10, 10, colors.blue);
+        fb.rectangle(x, y, 10, 10, colors.blue);
     }
 });

@@ -5,7 +5,7 @@ echo "Setting up..."
 dd if=/dev/zero of=lenux.img bs=1024 count=500000
 sudo losetup -P loop8 lenux.img
 cat lenux.sfdisk | sudo sfdisk /dev/loop8
-sudo mkfs.ext4 /dev/loop8p1
+sudo mkfs.ext4 -L Lenux /dev/loop8p1
 sudo mkdir /mnt/lenux
 sudo mount /dev/loop8p1 /mnt/lenux
 echo "Installing rootfs..."
