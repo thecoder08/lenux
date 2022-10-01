@@ -18,6 +18,9 @@ fb.clear();
 // draw a blue 50px radius circle with center at (100, 100)
 fb.circle(100, 100, 50, colors.blue);
 
+// draw a 50x50 image buffer with color depth 3 to (100, 100)
+fb.buffer(100, 100, 50, 50, 3, imageBuffer);
+
 // draw a blue 50x50 rectangle to (100, 100)
 fb.rectangle(100, 100, 50, 50, colors.blue);
 

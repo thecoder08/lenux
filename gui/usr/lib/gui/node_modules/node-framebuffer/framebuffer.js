@@ -27,6 +27,19 @@ this.circle = function(x, y, radius, color) {
   }
 }
 
+this.buffer = function(x, y, width, height, depth, buffer) {
+  for (var i = 0; i < height; i++) {
+    for (var j = 0; j < width; j++) {
+      var location = ((j * width) + i) * depth;
+      var pixel = [];
+      for (var k = 0; k < depth; k++) {
+        pixel[k] = buffer[location + k];
+      }
+      this.plot(x + j, y + i, pixel);
+    }
+  }
+}
+
 this.rectangle = function(x, y, width, height, color) {
   for (var i = 0; i < height; i++) {
     for (var j = 0; j < width; j++) {

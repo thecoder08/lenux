@@ -6,6 +6,8 @@ var fb = new Framebuffer('/dev/fb0', 640, 480, 3);
 var x = 0;
 var y = 0;
 
+var mouse = require('fs').readFileSync(__dirname + '/mouse.raw');
+
 getMouse('/dev/input/mice', function(left, middle, right, rel_x, rel_y) {
     if (((x + rel_x) >= 0) && ((x + rel_x) < 630)) {
         x += rel_x;
@@ -24,6 +26,6 @@ getMouse('/dev/input/mice', function(left, middle, right, rel_x, rel_y) {
         fb.rectangle(x, y, 10, 10, colors.green);
     }
     else {
-        fb.rectangle(x, y, 10, 10, colors.blue);
+        fb.buffer(x, y, 20, 20, 3, mouse);
     }
 });
