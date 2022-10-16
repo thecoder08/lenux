@@ -35,7 +35,7 @@ this.buffer = function(x, y, width, height, depth, buffer) {
       for (var k = 0; k < depth; k++) {
         pixel[k] = buffer[location + k];
       }
-      this.plot(x + j, y + i, pixel);
+      this.plot(x + i, y + j, pixel);
     }
   }
 }
