@@ -1,6 +1,7 @@
 #!/usr/bin/node
 process.argv.shift();
 process.argv.shift();
-var ttyFd = require('fs').openSync(process.argv.shift(), 'r+');
-require('fs').writeSync(ttyFd, '\033[2J\033[H');
+var tty = process.argv.shift();
+var ttyFd = require('fs').openSync(tty, 'r+');
+require('fs').writeSync(ttyFd, '\033[2J\033[HGetty on ' + tty + '\n\n');
 require('child_process').spawn(process.argv.shift(), process.argv, { stdio: [ttyFd, ttyFd, ttyFd] });

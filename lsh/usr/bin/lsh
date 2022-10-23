@@ -3,7 +3,7 @@ var cp = require('child_process');
 var fs = require('fs');
 var path = require('path');
 var cwd = process.cwd();
-function listener(data) {
+process.stdin.on('data', function(data) {
     var command = data.toString().split('\n')[0].split(' ');
     var prog = command[0];
     command.shift();
@@ -42,18 +42,17 @@ function listener(data) {
       }
     }
     else {
-      var program = cp.spawn(prog, command, {env: process.env, cwd: cwd, stdio: [0, 1, 2]});
-      process.stdin.removeListener('data', listener);
+      var program = cp.spawn(prog, command, {env: process.env, cwd: cwd, stdio: 'inherit'});
+      process.stdin.pause();
       program.on('error', function(err) {
         process.stderr.write(err + '\n');
         process.stdout.write('$ ');
-        process.stdin.on('data', listener);
+        process.stdin.resume();
        });
       program.on('exit', function(code) {
         process.stdout.write('$ ');
-        process.stdin.on('data', listener);
+        process.stdin.resume();
       });
     }
-}
+});
 process.stdout.write('$ ');
-process.stdin.on('data', listener);
