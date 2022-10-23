@@ -27,7 +27,6 @@ rsync -a mkdir/ rootfs
 rsync -a grep/ rootfs
 rsync -a readlink/ rootfs
 rsync -a gui/ rootfs
-rsync -a modem/ rootfs
 echo "Creating archive..."
 cd rootfs
 tar -czvf ../lenux.tar.gz $(ls)

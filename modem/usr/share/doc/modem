@@ -1,8 +1,0 @@
-          modem
--------------------------
-modem is a userspace
-driver for AT-compatible
-modems. It allows you
-to dial into remote
-systems and accept calls
-from remote systems.
