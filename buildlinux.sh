@@ -1,7 +1,7 @@
 
 #!/bin/bash
 set -e
-KERNEL_VERSION=6.0.5
+KERNEL_VERSION=$(wget https://www.kernel.org/releases.json | jq ".latest_stable.version")
 CORES=$(nproc)
 wget https://cdn.kernel.org/pub/linux/kernel/v${KERNEL_VERSION:0:1}.x/linux-$KERNEL_VERSION.tar.xz
 tar -xvf linux-$KERNEL_VERSION.tar.xz
