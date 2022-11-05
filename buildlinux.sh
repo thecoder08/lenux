@@ -15,7 +15,7 @@ make menuconfig
 cp .config ../config
 fi
 make bzImage -j $CORES
-mkdir ../kernel/boot
+mkdir -p ../kernel/boot
 mv arch/x86/boot/bzImage ../kernel/boot/linux
 cd ..
 rm -r linux-$KERNEL_VERSION
