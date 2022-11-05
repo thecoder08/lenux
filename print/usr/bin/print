@@ -1,0 +1,186 @@
+#!/usr/bin/node
+// print: a Linux utility for printing to text-only printers
+// to use it: Install node.js in the $PATH, download this script and save it as /usr/local/bin/print, and run chmod +x /usr/local/bin/print
+var cp = require('child_process');
+var fs = require('fs');
+var net = require('net');
+
+var unamea = '';
+cp.exec('uname -a', function(err, stdout, stderr) {
+  unamea = stdout.toString().split('\n')[0];
+});
+
+console.log('Welcome to print! This utility helps you print to various printers through several connections.');
+console.log('This utility only supports printing through text-only mode, so no drivers are needed. Your printer must also support this mode.\n');
+console.log('Available printers:');
+console.log('USB:');
+var usb = [];
+try {
+var devusb = fs.readdirSync('/dev/usb');
+for (var i = 0; i < devusb.length; i++) {
+  if (/lp/g.test(devusb[i])) {
+    usb.push(devusb[i]);
+  }
+}
+}
+catch(e) {}
+console.log(usb.join(' '));
+console.log('Parallel port:');
+var parallel = [];
+var devfiles = fs.readdirSync('/dev');
+for (var i = 0; i < devfiles.length; i++) {
+  if (/lp/g.test(devfiles[i])) {
+    parallel.push(devfiles[i]);
+  }
+}
+console.log(parallel.join(' '));
+console.log('Serial port:');
+var serial = [];
+for (var i = 0; i < devfiles.length; i++) {
+  if (/ttyS/g.test(devfiles[i])) {
+    serial.push(devfiles[i]);
+  }
+}
+console.log(serial.join(' '));
+console.log('You may also specify an IP address to use an AppSocket/JetDirect/RAW network printer.\n');
+var question = 1;
+var type = '';
+var device = '';
+process.stdout.write('Choose printer type (usb, parallel, serial, net): ');
+process.stdin.on('data', function(data) {
+  if (question == 1) {
+    type = data.toString().split('\n')[0];
+    if (type == 'usb') {
+      question = 2;
+      process.stdout.write('Choose USB printer (see options above): ');
+    }
+    else if (type == 'parallel') {
+      question = 2;
+      process.stdout.write('Choose Parallel printer (see options above): ');
+    }
+    else if (type == 'serial') {
+      question = 2;
+      process.stdout.write('Choose Serial printer (see options above): ');
+    }
+    else if (type == 'net') {
+      question = 2;
+      process.stdout.write('Enter network printer IP address: ');
+    }
+    else {
+      console.log('That\'s not an option!');
+      process.stdout.write('Choose printer type (usb, parallel, serial, net): ');
+    }
+  }
+  else if (question == 2) {
+    device = data.toString().split('\n')[0];
+    if (type == 'usb') {
+      if (usb.includes(device)) {
+        question = 3;
+        process.stdout.write('Enter file to print (t for test page): ');
+      }
+      else {
+        console.log('That\'s not an option!');
+        process.stdout.write('Choose USB printer (see options above): ');
+      }
+    }
+    if (type == 'parallel') {
+      if (parallel.includes(device)) {
+        question = 3;
+        process.stdout.write('Enter file to print (t for test page): ');
+      }
+      else {
+        console.log('That\'s not an option!');
+        process.stdout.write('Choose Parallel printer (see options above): ');
+      }
+    }
+    if (type == 'serial') {
+      if (serial.includes(device)) {
+        question = 3;
+        process.stdout.write('Enter file to print (t for test page): ');
+      }
+      else {
+        console.log('That\'s not an option!');
+        process.stdout.write('Choose Serial printer (see options above): ');
+      }
+    }
+    if (type == 'net') {
+      question = 3;
+      process.stdout.write('Enter file to print (t for test page): ');
+    }
+  }
+  else if (question == 3) {
+    var file = data.toString().split('\n')[0];
+    fs.readFile(file, function(err, data) {
+      if (file == 't') {
+        err = undefined;
+        var devicefile = '';
+        if (type == 'usb') {
+          devicefile = '/dev/usb/' + device;
+        }
+        else if (type == 'net') {
+          devicefile = 'Network Printer, Not Applicable';
+        }
+        else {
+          devicefile = '/dev/' + device;
+        }
+        data = 'Linux print utility test page\n\nIf you got this page, your printer is working.\nBelow is some information about your system and your printer setup.\nSystem info: ' + unamea + '\nPrinter/Printer address: ' + device + '\nDevice type: ' + type + '\nDevice file (if applicable): ' + devicefile + '\n\n--End of printer test page--\n';
+      }
+      if (err) {
+        console.log('Error reading file: ' + err);
+        process.stdout.write('Enter file to print (t for test page): ');
+      }
+      else {
+        data = data.toString().replace(/\n/gi, '\r\n');
+        console.log('Sending file to printer...');
+        if (type == 'usb') {
+          var stream = fs.createWriteStream('/dev/usb/' + device);
+          stream.on('close', function() {
+            console.log('Successfully printed file!');
+            process.exit();
+          });
+          stream.on('open', function() {
+            stream.write(data);
+            stream.write(new Uint8Array([0x0C]));
+            stream.end();
+          });
+        }
+        if (type == 'parallel') {
+          var stream = fs.createWriteStream('/dev/' + device);
+          stream.on('close', function() {
+            console.log('Successfully printed file!');
+            process.exit();
+          });
+          stream.on('open', function() {
+            stream.write(data);
+            stream.write(new Uint8Array([0x0C]));
+            stream.end();
+          });
+        }
+        if (type == 'serial') {
+          var stream = fs.createWriteStream('/dev/' + device);
+          stream.on('close', function() {
+            console.log('Successfully printed file!');
+            process.exit();
+          });
+          stream.on('open', function() {
+            stream.write(data);
+            stream.write(new Uint8Array([0x0C]));
+            stream.end();
+          });
+        }
+        if (type == 'net') {
+          var socket = net.connect(9100, device);
+          socket.on('close', function() {
+            console.log('Successfully printed file!');
+            process.exit();
+          });
+          socket.on('connect', function() {
+            socket.write(data);
+            socket.write(new Uint8Array([0x0C]));
+            socket.end();
+          });
+        }
+      }
+    });
+  }
+});
