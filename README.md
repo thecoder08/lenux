@@ -29,7 +29,7 @@ You can easily test the live code in QEMU by cloning the repository and running
 ./buildrootfs.sh
 ./test.sh
 ```
-in the repository directory. The test script requires the command `qemu-system-x86_64`.
+in the repository directory. The test script requires the command `qemu-system-x86_64`. The default credentials are username "user" and password "password". use the `please` command to run programs as root.
 ## Known Issues
 * Grub may specify the wrong hard drive when running on a real machine.
 

@@ -1,0 +1,1 @@
+[{"username":"root","password":"","salt":"","uid":0,"gid":0,"name":"Root User","home":"/root","shell":"/bin/sh"},{"username":"user","password":"3b2e487802ce3268debbae596183717623d1833ee537be0f7724edd506ad6433","salt":"x00kSkx79Z","uid":1000,"gid":1000,"name":"Default User","home":"/home/user","shell":"/bin/lsh"}]

@@ -15,6 +15,13 @@ sudo rsync -a kernel/ /mnt/lenux
 echo "Installing GRUB..."
 sudo rsync -a grub-cfg/ /mnt/lenux
 sudo grub-install --target=i386-pc --boot-directory=/mnt/lenux/boot /dev/loop8
+echo "Setting permissions..."
+sudo chown -R 0 /mnt/lenux
+sudo chgrp -R 0 /mnt/lenux
+sudo chown -R 1000 /mnt/lenux/home/user
+sudo chgrp -R 1000 /mnt/lenux/home/user
+sudo cp /mnt/lenux/usr/bin/node /mnt/lenux/usr/bin/snode
+sudo chmod +s /mnt/lenux/usr/bin/snode
 echo "Finishing up..."
 sudo umount /mnt/lenux
 sudo rmdir /mnt/lenux

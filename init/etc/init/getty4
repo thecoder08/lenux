@@ -1,3 +1,3 @@
-getty /dev/tty4 /bin/sh
+getty /dev/tty4 /bin/login
 
 Getty on tty4.

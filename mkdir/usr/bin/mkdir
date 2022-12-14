@@ -7,7 +7,7 @@ else {
   var fs = require('fs');
   fs.mkdir(process.argv[2], function(err) {
     if (err) {
-      console.log('Error making directory!');
+      console.log('Error making directory: ' + err);
     }
   });
 }

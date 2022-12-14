@@ -1,0 +1,13 @@
+           login
+---------------------------
+This contains the login
+program which prompts the
+user for their credentials,
+authenticates them, and
+runs their shell. It also
+contains the please program
+which runs a program with
+root permissions if the
+user is an administrator,
+and they enter their
+password.

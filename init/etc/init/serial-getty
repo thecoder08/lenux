@@ -1,3 +1,3 @@
-getty /dev/ttyS0 /bin/sh
+getty /dev/ttyS0 /bin/login
 
 Getty on the serial port.

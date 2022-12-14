@@ -1,0 +1,79 @@
+#!/usr/bin/snode
+var fs = require('fs');
+var cp = require('child_process');
+var crypto = require('crypto');
+if (process.argv.length < 3) {
+    console.log('Usage:');
+    console.log('please [command]');
+}
+else {
+    process.stdout.write('Password: ');
+    process.stdin.setRawMode(true);
+    var password = '';
+    process.stdin.on('data', function(data) {
+        var char = data.toString();
+        if (char == '\r') {
+            process.stdin.setRawMode(false);
+            process.stdout.write('\n');
+            if (password) {
+                fs.readFile('/etc/users.json', function(err, data) {
+                    if (err) {
+                        console.log('Failed to read user database!');
+                        process.exit(1);
+                    }
+                    else {
+                        var usernumber = 0;
+                        var users = JSON.parse(data);
+                        for (var i = 0; i < users.length; i++) {
+                            if (users[i].uid == process.getuid()) {
+                                usernumber = i;
+                                break;
+                            }
+                        }
+                        var groups = JSON.parse(fs.readFileSync('/etc/groups.json'));
+                        if (groups.admin.includes(users[usernumber].username)) {
+                        var hash = crypto.createHash('sha256');
+                        hash.update(password + users[usernumber].salt);
+                        if (hash.digest().equals(Buffer.from(users[usernumber].password, 'hex'))) {
+                            // finally, the user is authenticated.
+                            var programEnv = process.env;
+                            programEnv.HOME = '/root';
+                            programEnv.USER = 'root';
+                            process.argv.shift();
+                            process.argv.shift();
+                            var program = cp.spawn(process.argv.shift(), process.argv, {env: programEnv, stdio: 'inherit'});
+                            process.stdin.pause();
+                            program.on('error', function() {
+                                process.exit(1);
+                            });
+                            program.on('exit', function() {
+                                process.exit();
+                            });
+                        }
+                        else {
+                            console.log('Incorrect Password!');
+                            process.exit(1);
+                        }
+                        }
+                        else {
+                            console.log('User is not an administrator!');
+                            process.exit(1);
+                        }
+                    }
+                });
+            }
+            else {
+                process.stdin.setRawMode(true);
+                process.stdout.write('Password: ');
+            }
+        }
+        else if (char == '\b') {
+            password.pop();
+            process.stdout.write('\b');
+        }
+        else {
+            password += char;
+            process.stdout.write('*');
+        }
+    });
+}
