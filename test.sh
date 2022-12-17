@@ -20,7 +20,7 @@ echo "Finishing up..."
 sudo umount /mnt/lenux
 sudo rmdir /mnt/lenux
 echo "Running test image..."
-kvm -m 256M -smp $(nproc) -vga std -cpu kvm64 -drive file=test.img,format=raw -kernel kernel/boot/linux -append "root=/dev/sda rw vga=0x312"
+kvm -m 256M -smp $(nproc) -vga std -cpu kvm64 -nic user,model=e1000 -drive file=test.img,format=raw -kernel kernel/boot/linux -append "root=/dev/sda rw vga=0x312"
 echo "Removing test image..."
 rm test.img
 echo "Done!"
