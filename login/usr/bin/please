@@ -41,12 +41,13 @@ else {
                             programEnv.USER = 'root';
                             process.argv.shift();
                             process.argv.shift();
-                            var program = cp.spawn(process.argv.shift(), process.argv, {env: programEnv, stdio: 'inherit'});
+                            var program = cp.spawn(process.argv.shift(), process.argv, {env: programEnv, stdio: 'inherit', uid: 0, gid: 0});
                             process.stdin.pause();
-                            program.on('error', function() {
+                            program.on('error', function(err) {
+                                process.stderr.write(err + '\n');
                                 process.exit(1);
                             });
-                            program.on('exit', function() {
+                            program.on('exit', function(code) {
                                 process.exit();
                             });
                         }

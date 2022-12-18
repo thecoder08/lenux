@@ -3,6 +3,10 @@ var cp = require('child_process');
 var fs = require('fs');
 var path = require('path');
 var cwd = process.cwd();
+var prompt = '$ ';
+if (process.getuid() == 0) {
+  prompt = '# ';
+}
 process.stdin.on('data', function(data) {
     var command = data.toString().split('\n')[0].split(' ');
     var prog = command[0];
@@ -27,11 +31,11 @@ process.stdin.on('data', function(data) {
             console.log('Not a directory!');
           }
         }
-        process.stdout.write('$ ');
+        process.stdout.write(prompt);
       });
     }
     else if (prog == '') {
-      process.stdout.write('$ ');
+      process.stdout.write(prompt);
     }
     else if ((prog == 'exit') || (prog == 'logout')) {
       if (command[0] !== undefined) {
@@ -46,13 +50,13 @@ process.stdin.on('data', function(data) {
       process.stdin.pause();
       program.on('error', function(err) {
         process.stderr.write(err + '\n');
-        process.stdout.write('$ ');
+        process.stdout.write(prompt);
         process.stdin.resume();
        });
       program.on('exit', function(code) {
-        process.stdout.write('$ ');
+        process.stdout.write(prompt);
         process.stdin.resume();
       });
     }
 });
-process.stdout.write('$ ');
+process.stdout.write(prompt);
