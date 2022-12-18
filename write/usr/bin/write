@@ -9,7 +9,6 @@ else {
   var ws = fs.createWriteStream(args[2]);
   ws.on('error', function(err) {
     console.log('Error writing file!');
-    console.log(err);
     process.exit();
   });
   process.stdin.on('data', function(data) {
