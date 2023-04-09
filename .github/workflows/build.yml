@@ -20,11 +20,8 @@ jobs:
       - name: Build Lenux rootfs
         run: ./buildrootfs.sh
 
-      - name: Build Lenux image
-        run: ./buildimg.sh
-
-      - name: Compress Lenux image
-        run: gzip lenux.img
+      - name: Build Lenux ISO
+        run: ./buildiso.sh
 
       - name: Upload rootfs
         uses: actions/upload-artifact@v2
@@ -32,8 +29,8 @@ jobs:
           name: lenux.tar.gz
           path: lenux.tar.gz
         
-      - name: Upload compressed image
+      - name: Upload ISO
         uses: actions/upload-artifact@v2
         with:
-          name: lenux.img.gz
-          path: lenux.img.gz
+          name: lenux.iso
+          path: lenux.iso
