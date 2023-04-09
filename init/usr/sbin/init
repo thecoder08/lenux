@@ -5,7 +5,7 @@ if (process.pid == 1) {
 console.log('Welcome to Lenux v1.0.3!');
 cp.spawn('mount', ['-t', 'devtmpfs', 'devtmpfs', '/dev']);
 cp.spawn('mount', ['-t', 'sysfs', 'sysfs', '/sys']);
-cp.spawn('mount', ['-t', 'procfs', 'procfs', '/proc']);
+cp.spawn('mount', ['-t', 'proc', 'proc', '/proc']);
 cp.spawn('mount', ['-t', 'tmpfs', 'tmpfs', '/tmp']);
 cp.spawn('mount', ['-t', 'tmpfs', 'tmpfs', '/run']);
 console.log('Initializing daemons...');
