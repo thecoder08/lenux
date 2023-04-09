@@ -1,0 +1,7 @@
+          natives         
+----------------------------
+This package contains native
+machine code programs and
+libraries, including the
+node.js runtime and mount
+executable.

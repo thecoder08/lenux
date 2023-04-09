@@ -2,5 +2,6 @@ kernel/boot/
 linux-*
 lenux.tar.gz
 lenux.img
+lenux.iso
 test.img
 rootfs

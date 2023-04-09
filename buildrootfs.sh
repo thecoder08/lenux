@@ -7,11 +7,10 @@ echo "Installing programs..."
 rsync -a dirs/ rootfs
 rsync -a doc/ rootfs
 rsync -a init/ rootfs
-rsync -a gnu/ rootfs
+rsync -a natives/ rootfs
 rsync -a lpm/ rootfs
 rsync -a ls/ rootfs
 rsync -a lsh/ rootfs
-rsync -a node/ rootfs
 rsync -a cat/ rootfs
 rsync -a clear/ rootfs
 rsync -a echo/ rootfs
@@ -30,6 +29,7 @@ rsync -a gui/ rootfs
 rsync -a print/ rootfs
 rsync -a test-game/ rootfs
 rsync -a login/ rootfs
+rm rootfs/PKGNAME
 echo "Creating archive..."
 cd rootfs
 tar -czvf ../lenux.tar.gz $(ls)
