@@ -22,7 +22,7 @@ rsync -a kernel/ iso
 rsync -a grub-cfg-iso/ iso
 rm -r iso/usr iso/PKGNAME
 echo "Building ISO..."
-grub-mkrescue iso -o lenux.iso
+grub-mkrescue iso -o lenux.iso -V LENUX
 echo "Finishing up..."
 rm -r iso
 echo "Build succeded!"
