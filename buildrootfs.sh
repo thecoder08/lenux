@@ -30,6 +30,7 @@ rsync -a print/ rootfs
 rsync -a test-game/ rootfs
 rsync -a login/ rootfs
 rm rootfs/PKGNAME
+find rootfs -name .empty -delete
 echo "Creating archive..."
 cd rootfs
 tar -czvf ../lenux.tar.gz $(ls)

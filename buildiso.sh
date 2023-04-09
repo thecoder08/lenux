@@ -20,6 +20,7 @@ sudo rm -r initramfs
 echo "Installing kernel..."
 rsync -a kernel/ iso
 rsync -a grub-cfg-iso/ iso
+rm -r iso/usr iso/PKGNAME
 echo "Building ISO..."
 grub-mkrescue iso -o lenux.iso
 echo "Finishing up..."
