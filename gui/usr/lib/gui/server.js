@@ -7,46 +7,51 @@ var fb = new Framebuffer('/dev/fb0', 640, 480, 3);
 var x = 0;
 var y = 0;
 var held = -1;
+var oldLeft = false;
 var windows = [];
+var behindMouseBuffer = new Uint8Array(20 * 20 * 3);
 
 var fs = require('fs');
 var cursor = fs.readFileSync(__dirname + '/images/cursor.raw');
 var finger = fs.readFileSync(__dirname + '/images/finger.raw');
 
 getMouse('/dev/input/mice', function(left, middle, right, rel_x, rel_y) {
-    // clear mouse
-    fb.rectangle(x, y, 20, 20, colors.black);
-    var hoveredWindow = windows.find(window => x >= window.x && x < window.x + window.width && y >= window.y && y < window.y + window.height);
-    if (hoveredWindow) {
-        hoveredWindow.socket.write(JSON.stringify({event: 'redraw', name: hoveredWindow.name}));
-    }
-    if (((x + rel_x) >= 0) && ((x + rel_x) <= 620)) {
-        x += rel_x;
-    }
-    if (((y - rel_y) >= 0) && ((y - rel_y) <= 460)) {
-        y -= rel_y;
-    }
-    if (left) {
-        if (held === -1) {
-            held = windows.findIndex(window => x > window.x && x < window.x + window.width && y > window.y && y < window.y + window.height);
+    if (rel_x != 0 || rel_y != 0) {
+        // mouse move
+        fb.buffer(x, y, 20, 20, 3, behindMouseBuffer);
+        if (((x + rel_x) >= 0) && ((x + rel_x) <= 620)) {
+            x += rel_x;
         }
-        if (held > -1) {
-            fb.rectangle(windows[held].x, windows[held].y, windows[held].width, windows[held].height, colors.black);
-            windows[held].x = x;
-            windows[held].y = y;
-            
+        if (((y - rel_y) >= 0) && ((y - rel_y) <= 460)) {
+            y -= rel_y;
         }
-        fb.buffer(x, y, 20, 20, 3, finger);
+        behindMouseBuffer = saveNewBuffer(x, y);
+        // draw the appropriate cursor
+        if (left) {
+            fb.buffer(x, y, 20, 20, 3, finger);
+        }
+        else if (middle) {
+            fb.rectangle(x, y, 20, 20, colors.blue);
+        }
+        else if (right) {
+            fb.rectangle(x, y, 20, 20, colors.green);
+        }
+        else {
+            fb.buffer(x, y, 20, 20, 3, cursor);
+        }
     }
-    else if (middle) {
-        fb.rectangle(x, y, 20, 20, colors.blue);
+    if (oldLeft && !left) {
+        // mouse up
+        fb.rectangle(windows[held].x, windows[held].y, windows[held].width, windows[held].height, colors.black);
+        windows[held].x = x;
+        windows[held].y = y;
+        windows[held].socket.write(JSON.stringify({event: 'redraw'}));
     }
-    else if (right) {
-        fb.rectangle(x, y, 20, 20, colors.green);
+    if (!oldLeft && left) {
+        // mouse down
+        held = windows.findIndex(window => x > window.x && x < window.x + window.width && y > window.y && y < window.y + window.height);
     }
-    else {
-        fb.buffer(x, y, 20, 20, 3, cursor);
-    }
+    oldLeft = left;
 });
 
 net.createServer(function(socket) {
@@ -86,6 +91,6 @@ fs.chmodSync('/etc/gui.socket', 0o777);
 // destroyWindow: no others
 // transferBuffer: size
 
-//params of events
+// params of events
 // all events: event, name
 // redraw: no others. After receiving, clients should resend a transferBuffer request.
