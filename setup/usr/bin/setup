@@ -1,0 +1,22 @@
+#!/usr/bin/node
+var cp = require('child_process');
+function prompt() {
+    return new Promise(function(resolve, reject) {
+        process.stdin.once('data', resolve);
+    });
+}
+(async function() {
+console.log("Welcome to Lenux Setup. This program will install Lenux on your hard drive.");
+process.stdout.write('Press enter to continue: ');
+await prompt();
+console.log('Lenux Setup will start by creating a Lenux partition on your hard drive to store the OS and files.');
+process.stdout.write('Enter the device file for your hard drive: /dev/');
+var harddrive = '/dev/' + await prompt();
+console.log('Partitioning hard drive...');
+var sfdisklist = cp.spawn('sfdisk', ['-l', harddrive]);
+sfdisklist.stdout.on('data')
+var sfdisk = cp.spawn('sfdisk', [harddrive]);
+sfdisk.stdin.write('label:dos');
+sfdisk.stdin.write(harddrive + '1:start=1,size='+size+',type=83');
+
+})();

@@ -29,6 +29,7 @@ rsync -a gui/ rootfs
 rsync -a print/ rootfs
 rsync -a test-game/ rootfs
 rsync -a login/ rootfs
+rsync -a setup/ rootfs
 rm rootfs/PKGNAME
 find rootfs -name .empty -delete
 echo "Creating archive..."
