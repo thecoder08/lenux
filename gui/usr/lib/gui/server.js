@@ -42,10 +42,12 @@ getMouse('/dev/input/mice', function(left, middle, right, rel_x, rel_y) {
     }
     if (oldLeft && !left) {
         // mouse up
-        fb.rectangle(windows[held].x, windows[held].y, windows[held].width, windows[held].height, colors.black);
-        windows[held].x = x;
-        windows[held].y = y;
-        windows[held].socket.write(JSON.stringify({event: 'redraw'}));
+        if (held > -1) {
+            fb.rectangle(windows[held].x, windows[held].y, windows[held].width, windows[held].height, colors.black);
+            windows[held].x = x;
+            windows[held].y = y;
+            windows[held].socket.write(JSON.stringify({event: 'redraw'}));
+        }
     }
     if (!oldLeft && left) {
         // mouse down
