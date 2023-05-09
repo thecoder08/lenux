@@ -1,6 +1,6 @@
 {
   "name": "node-framebuffer",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "A library for interacting with the Linux framebuffer API.",
   "main": "framebuffer.js",
   "scripts": {

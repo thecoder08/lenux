@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "node-framebuffer": "^1.0.10"
+    "node-framebuffer": "^1.0.11"
   }
 }
