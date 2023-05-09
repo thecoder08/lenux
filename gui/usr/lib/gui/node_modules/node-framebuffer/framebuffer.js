@@ -2,12 +2,15 @@ module.exports.Framebuffer = function(dev, width, height, depth) {
 
 var fs = require('fs');
 
-this.framebuffer = fs.openSync(dev, 'w');
+this.framebuffer = fs.openSync(dev, 'r+');
 this.width = width;
 this.height = height;
 this.depth = depth;
 
 this.plot = function(x, y, color) {
+  if (x >= this.width || x < 0 || y >= this.height || y < 0) {
+    return;
+  }
   var colorToDraw = [...color];
   colorToDraw.reverse();
   colorToDraw.push(0);
