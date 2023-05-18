@@ -15,7 +15,7 @@ var behindMouseBuffer = saveNewBuffer(x, y, 20, 20, 3);
 var cursor = fs.readFileSync(__dirname + '/images/cursor.raw');
 var finger = fs.readFileSync(__dirname + '/images/finger.raw');
 
-getMouse('/dev/input/mice', function(left, middle, right, rel_x, rel_y) {
+getMouse('/dev/input/mice', async function(left, middle, right, rel_x, rel_y) {
     // send mouse event to window if applicable
     var hoveredWindow = windows.findIndex(window => x >= window.x && x < window.x + window.width && y >= window.y && y < window.y + window.height);
     if (hoveredWindow > -1) {
@@ -51,7 +51,9 @@ getMouse('/dev/input/mice', function(left, middle, right, rel_x, rel_y) {
             var obstructedWindows = windows.filter(window => checkCollision(windows[held], window) && window.name != windows[held].name);
             for (var i = 0; i < obstructedWindows.length; i++) {
                 obstructedWindows[i].socket.write(JSON.stringify({event: 'redraw'}));
+                await sleep(10);
             }
+            await sleep(10);
             windows[held].x = x
             windows[held].y = y;
             windows[held].socket.write(JSON.stringify({event: 'redraw'}));
@@ -148,3 +150,10 @@ function checkCollision(rect1, rect2) {
 // all events: event
 // redraw: no others. After receiving, clients should resend a transferBuffer request.
 // mouse: left, middle, right, rel_x, rel_y, x, y
+
+function sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
+  

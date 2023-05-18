@@ -7,8 +7,11 @@ function connect(connectCb, eventCb) {
         connectCb(socket);
     });
     socket.on('data', function(data) {
-        var event = JSON.parse(data);
-        eventCb(socket, event);
+        try {
+            var event = JSON.parse(data);
+            eventCb(socket, event);
+        }
+        catch (err) {}
     });
 }
 
