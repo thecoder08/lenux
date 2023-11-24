@@ -1,4 +1,3 @@
-
 #!/bin/bash
 set -e
 KERNEL_VERSION=$(wget -O - https://www.kernel.org/releases.json | jq -r ".latest_stable.version")
