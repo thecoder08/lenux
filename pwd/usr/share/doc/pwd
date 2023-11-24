@@ -1,0 +1,4 @@
+                          pwd
+--------------------------------------------------------
+pwd will print out the current working directory of the
+shell. Call it without any arguments.

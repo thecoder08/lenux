@@ -44,9 +44,9 @@ process.stdin.on('data', function(data) {
             process.stdout.write('Username: ');
         }
     }
-    if (mode == 'password') {
+    else if (mode == 'password') {
         var char = data.toString();
-        if (char == '\r') {
+        if (char == '\r' || char == '\n') {
             process.stdin.setRawMode(false);
             process.stdout.write('\n');
             if (password) {
@@ -88,9 +88,11 @@ process.stdin.on('data', function(data) {
                 process.stdout.write('Password: ');
             }
         }
-        else if (char == '\b') {
-            password.pop();
-            process.stdout.write('\b');
+        else if (char == '\b' || char == '\x7f') {
+            if (password.length > 0) {
+                password = password.slice(0, -1);
+                process.stdout.write('\b \b');
+            }
         }
         else {
             password += char;
