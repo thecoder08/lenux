@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install kernel dependencies
         run: sudo apt install mtools libssl-dev libelf-dev -y
@@ -24,13 +24,13 @@ jobs:
         run: ./buildiso.sh
 
       - name: Upload rootfs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: lenux.tar.gz
           path: lenux.tar.gz
         
       - name: Upload ISO
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: lenux.iso
           path: lenux.iso
