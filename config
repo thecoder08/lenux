@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 7.0.3 Kernel Configuration
+# Linux/x86 7.0.10 Kernel Configuration
 #
 CONFIG_CC_VERSION_TEXT="gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
 CONFIG_CC_IS_GCC=y
@@ -6524,7 +6524,6 @@ CONFIG_VIDEO_CAFE_CCIC=m
 #
 # Sunxi media platform drivers
 #
-# CONFIG_VIDEO_DW_MIPI_CSI2RX is not set
 
 #
 # Texas Instruments drivers
